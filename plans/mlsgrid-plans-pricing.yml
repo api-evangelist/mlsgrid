@@ -1,0 +1,40 @@
+aid: mlsgrid
+name: MLS Grid Subscription Plans
+description: MLS Grid does not publish a per-tier price card on its public website. Pricing is negotiated per data consumer / vendor and per participating MLS, governed by the single Master Data License Agreement. Use this file as a placeholder structure; actual fees are quoted via support@mlsgrid.com.
+specification: API Commons Plans 0.1
+plans:
+- id: data-consumer-subscription
+  name: Data Consumer Subscription
+  type: Negotiated
+  description: Per-vendor access tier for IDX/VOW/BO/PT consumption across one or more participating MLSs. Pricing is negotiated; see support@mlsgrid.com.
+  entries:
+  - geo: US
+    unit: 1
+    label: Per Subscription
+    price: Contact
+    metric: subscription
+    timeFrame: month
+    description: Pricing not publicly published.
+  elements:
+  - name: Single Master Data License Agreement
+  - name: RESO Web API v2 (OData) access
+  - name: Property, Member, Office, OpenHouse, Media, Lookup resources
+  - name: $expand for Media, Rooms, UnitTypes
+  - name: Multi-MLS access through one feed
+  - name: Quarterly compliance audits
+- id: broker-subscription
+  name: Broker Subscription
+  type: Negotiated
+  description: Broker-account tier for signing data agreements and exporting listings to third-party vendors.
+  entries:
+  - geo: US
+    unit: 1
+    label: Per Brokerage
+    price: Contact
+    metric: brokerage
+    timeFrame: month
+    description: Pricing not publicly published.
+  elements:
+  - name: Sign agreements once for multi-MLS reach
+  - name: Export data to third-party vendors
+  - name: Broker-only account access

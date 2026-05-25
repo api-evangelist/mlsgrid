@@ -1,0 +1,58 @@
+aid: mlsgrid
+name: MLS Grid Vocabulary
+description: Operational vocabulary for the MLS Grid RESO Web API — resources, signal fields, statuses, and license-control flags.
+terms:
+- name: Property
+  type: Resource
+  description: RESO Data Dictionary Property resource. Primary listing entity exposed by MLS Grid.
+- name: Member
+  type: Resource
+  description: Real estate agent record.
+- name: Office
+  type: Resource
+  description: Brokerage office record.
+- name: OpenHouse
+  type: Resource
+  description: Open house event tied to a Property.
+- name: Media
+  type: Resource
+  description: Listing media (photos, virtual tours). Inline via $expand or standalone where supported.
+- name: Lookup
+  type: Resource
+  description: Per-MLS enumeration values translatable to RESO StandardLookupValue.
+- name: OriginatingSystemName
+  type: SignalField
+  description: Identifies the source MLS (e.g. actris, mred, nwmls). Required in every replication filter.
+- name: ModificationTimestamp
+  type: SignalField
+  description: UTC last-modified timestamp used to drive incremental replication watermarks.
+- name: PhotosChangeTimestamp
+  type: SignalField
+  description: UTC timestamp indicating when Media for a listing last changed.
+- name: MlgCanView
+  type: LicenseFlag
+  description: Boolean flag indicating whether a record may currently be displayed under license terms.
+- name: MlgCanUse
+  type: LicenseFlag
+  description: Array of allowed use cases (IDX, VOW, BO, PT).
+- name: IDX
+  type: UseCase
+  description: Internet Data Exchange — public consumer-facing display.
+- name: VOW
+  type: UseCase
+  description: Virtual Office Website — authenticated consumer display.
+- name: BO
+  type: UseCase
+  description: Broker-Only — restricted to broker/agent users.
+- name: PT
+  type: UseCase
+  description: Product Testing / development use.
+- name: StandardStatus
+  type: Enumeration
+  description: RESO normalized listing status.
+- name: PropertyType
+  type: Enumeration
+  description: RESO normalized property type.
+- name: 'odata:nextLink'
+  type: PaginationToken
+  description: OData server-driven pagination link returned in collection responses.

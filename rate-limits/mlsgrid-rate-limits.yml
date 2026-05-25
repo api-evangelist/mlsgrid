@@ -1,0 +1,41 @@
+aid: mlsgrid
+name: MLS Grid Web API Rate Limits
+description: Documented rate limits for the MLS Grid Web API v2. Violations return HTTP 429 with suspension details; repeat offenders may have their token suspended. Exceptions can be requested via support@mlsgrid.com.
+specification: API Commons Rate Limits 0.1
+source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+policies:
+- name: Request Rate
+  scope: per-token
+  limit: 2
+  unit: request
+  per: second
+  enforcement: hard
+  onExceeded:
+    status: 429
+    action: temporary-suspension
+- name: Hourly Requests
+  scope: per-token
+  limit: 7200
+  unit: request
+  per: hour
+  enforcement: hard
+  onExceeded:
+    status: 429
+- name: Daily Requests
+  scope: per-token
+  limit: 40000
+  unit: request
+  per: 24-hours
+  enforcement: hard
+  onExceeded:
+    status: 429
+- name: Hourly Data Volume
+  scope: per-token
+  limit: 4
+  unit: GB
+  per: hour
+  enforcement: hard
+  onExceeded:
+    status: 429
+exceptions:
+  process: Email support@mlsgrid.com to request limit increases.

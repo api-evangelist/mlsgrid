@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "reso": "https://ddwiki.reso.org/display/DDW17/",
+    "mlsgrid": "https://docs.mlsgrid.com/api-documentation/api-version-2.0#",
+    "ListingKey": "mlsgrid:ListingKey",
+    "OriginatingSystemName": "mlsgrid:OriginatingSystemName",
+    "StandardStatus": "mlsgrid:StandardStatus",
+    "PropertyType": "mlsgrid:PropertyType",
+    "ListPrice": {
+      "@id": "schema:price",
+      "@type": "schema:Number"
+    },
+    "ModificationTimestamp": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    },
+    "UnparsedAddress": "schema:streetAddress",
+    "City": "schema:addressLocality",
+    "StateOrProvince": "schema:addressRegion",
+    "PostalCode": "schema:postalCode",
+    "Country": "schema:addressCountry",
+    "Latitude": "schema:latitude",
+    "Longitude": "schema:longitude",
+    "BedroomsTotal": "schema:numberOfBedrooms",
+    "BathroomsTotalInteger": "schema:numberOfBathroomsTotal",
+    "LivingArea": "schema:floorSize",
+    "YearBuilt": "schema:yearBuilt",
+    "PublicRemarks": "schema:description",
+    "Property": "schema:RealEstateListing",
+    "Member": "schema:RealEstateAgent",
+    "Office": "schema:RealEstateAgent",
+    "OpenHouse": "schema:Event",
+    "Media": "schema:ImageObject",
+    "MediaURL": "schema:contentUrl",
+    "MlgCanView": "mlsgrid:MlgCanView",
+    "MlgCanUse": "mlsgrid:MlgCanUse"
+  }
+}

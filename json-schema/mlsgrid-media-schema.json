@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mlsgrid/main/json-schema/mlsgrid-media-schema.json",
+  "title": "MLS Grid Media",
+  "description": "RESO Data Dictionary Media resource as exposed via $expand=Media on Property or as a standalone /Media collection where supported by the originating MLS.",
+  "type": "object",
+  "required": ["MediaKey", "ResourceRecordKey", "OriginatingSystemName"],
+  "properties": {
+    "MediaKey": {
+      "type": "string",
+      "description": "Prefixed media key."
+    },
+    "ResourceRecordKey": {
+      "type": "string",
+      "description": "Foreign key to the parent resource (typically Property.ListingKey)."
+    },
+    "ResourceName": {
+      "type": "string",
+      "enum": ["Property", "Member", "Office", "OpenHouse"]
+    },
+    "OriginatingSystemName": {
+      "type": "string"
+    },
+    "MediaURL": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL for downloading a local copy of the media asset. Hot-linking is prohibited under the MLS Grid license."
+    },
+    "MediaCategory": {
+      "type": "string"
+    },
+    "MediaType": {
+      "type": "string"
+    },
+    "MimeType": {
+      "type": "string"
+    },
+    "Order": {
+      "type": "integer"
+    },
+    "ShortDescription": {
+      "type": "string"
+    },
+    "LongDescription": {
+      "type": "string"
+    },
+    "ImageHeight": {
+      "type": "integer"
+    },
+    "ImageWidth": {
+      "type": "integer"
+    },
+    "ImageSizeDescription": {
+      "type": "string"
+    },
+    "MediaModificationTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

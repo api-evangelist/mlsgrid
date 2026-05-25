@@ -1,0 +1,46 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: mlsgrid-property-replication
+  title: Replicate MLS Grid Property listings
+  description: Incrementally replicate Property listings from one or more MLS Grid originating systems using the OriginatingSystemName + ModificationTimestamp pattern, expanding Media, Rooms, and UnitTypes inline.
+  provider: mlsgrid
+  api: mlsgrid-reso-web-api
+spec:
+  binding:
+    method: GET
+    url: https://api.mlsgrid.com/v2/Property
+    auth: bearer
+  inputs:
+  - name: originatingSystemName
+    type: string
+    required: true
+    description: MLS identifier such as actris, mred, nwmls, recolorado.
+  - name: modifiedSince
+    type: string
+    format: date-time
+    required: true
+    description: Last successful ModificationTimestamp watermark. Use UTC.
+  - name: expand
+    type: string
+    default: Media,Rooms,UnitTypes
+  - name: pageSize
+    type: integer
+    default: 1000
+  query:
+    $filter: OriginatingSystemName eq '{originatingSystemName}' and ModificationTimestamp gt {modifiedSince}
+    $expand: '{expand}'
+    $top: '{pageSize}'
+  pagination:
+    type: odata-next-link
+    nextField: '@odata.nextLink'
+  outputs:
+    schema: ../json-schema/mlsgrid-property-schema.json
+  rateLimits:
+    rps: 2
+    perHour: 7200
+    perDay: 40000
+    bytesPerHour: 4294967296
+  errorHandling:
+    on429: backoff-and-resume-from-watermark
+    on5xx: retry-3x-exponential

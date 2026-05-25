@@ -1,0 +1,47 @@
+extends:
+- spectral:oas
+rules:
+  mlsgrid-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    severity: warn
+    given: $.paths.*.*.summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][A-Za-z0-9$]*( [A-Z$][A-Za-z0-9$]*)*$'
+  mlsgrid-operation-tag-required:
+    description: Every operation must declare exactly one tag.
+    severity: error
+    given: $.paths.*.*
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+          maxItems: 1
+  mlsgrid-bearer-auth-required:
+    description: Bearer authentication scheme must be defined.
+    severity: error
+    given: $.components.securitySchemes
+    then:
+      field: bearerAuth
+      function: truthy
+  mlsgrid-odata-pagination-via-next-link:
+    description: Collection responses should document the OData @odata.nextLink pagination pattern.
+    severity: warn
+    given: $.paths.*.get.responses['200'].content['application/json'].schema
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+  mlsgrid-replication-filter-documented:
+    description: Replication endpoints should document the OriginatingSystemName + ModificationTimestamp filter pattern.
+    severity: info
+    given: $.paths.*.get.parameters[?(@.name=='$filter')].example
+    then:
+      function: pattern
+      functionOptions:
+        match: 'OriginatingSystemName'

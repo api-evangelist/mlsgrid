@@ -1,0 +1,53 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.mlsgrid.com/v2/Property?$filter=OriginatingSystemName%20eq%20'actris'%20and%20ModificationTimestamp%20gt%202026-01-01T00:00:00Z&$expand=Media,Rooms,UnitTypes&$top=100",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOi...",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "@odata.context": "https://api.mlsgrid.com/v2/$metadata#Property",
+    "@odata.nextLink": "https://api.mlsgrid.com/v2/Property?$skiptoken=actris-7654321",
+    "value": [
+      {
+        "ListingKey": "actris-1234567",
+        "OriginatingSystemName": "actris",
+        "StandardStatus": "Active",
+        "PropertyType": "Residential",
+        "PropertySubType": "SingleFamilyResidence",
+        "ListPrice": 575000,
+        "UnparsedAddress": "1234 Bluebonnet Ln",
+        "City": "Austin",
+        "StateOrProvince": "TX",
+        "PostalCode": "78704",
+        "Country": "US",
+        "Latitude": 30.247,
+        "Longitude": -97.762,
+        "BedroomsTotal": 3,
+        "BathroomsTotalInteger": 2,
+        "LivingArea": 1820,
+        "YearBuilt": 1998,
+        "PublicRemarks": "Updated South Austin bungalow blocks from Zilker Park.",
+        "ModificationTimestamp": "2026-05-24T18:42:11Z",
+        "PhotosChangeTimestamp": "2026-05-24T18:42:11Z",
+        "MlgCanView": true,
+        "MlgCanUse": ["IDX", "VOW", "BO"],
+        "Media": [
+          {
+            "MediaKey": "actris-media-9876543-1",
+            "ResourceRecordKey": "actris-1234567",
+            "Order": 1,
+            "MediaCategory": "Photo",
+            "MediaURL": "https://media.mlsgrid.com/actris/9876543-1.jpg",
+            "MediaModificationTimestamp": "2026-05-24T18:42:11Z"
+          }
+        ],
+        "Rooms": [
+          {"RoomType": "Primary Bedroom", "RoomLevel": "Main", "RoomLength": 14, "RoomWidth": 13}
+        ]
+      }
+    ]
+  }
+}

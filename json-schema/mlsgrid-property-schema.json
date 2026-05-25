@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/mlsgrid/main/json-schema/mlsgrid-property-schema.json",
+  "title": "MLS Grid Property",
+  "description": "RESO Data Dictionary Property resource as exposed by the MLS Grid Web API v2. Only fields present in the originating MLS are populated for a given record.",
+  "type": "object",
+  "required": ["ListingKey", "OriginatingSystemName"],
+  "properties": {
+    "ListingKey": {
+      "type": "string",
+      "description": "Prefixed MLS Grid listing key (e.g. actris-1234567)."
+    },
+    "OriginatingSystemName": {
+      "type": "string",
+      "description": "Source MLS identifier."
+    },
+    "OriginatingSystemKey": {
+      "type": "string"
+    },
+    "StandardStatus": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "ActiveUnderContract",
+        "Pending",
+        "Hold",
+        "Withdrawn",
+        "Expired",
+        "Closed",
+        "Canceled",
+        "ComingSoon",
+        "Delete",
+        "Incomplete"
+      ]
+    },
+    "MlsStatus": {
+      "type": "string"
+    },
+    "PropertyType": {
+      "type": "string",
+      "enum": [
+        "Residential",
+        "ResidentialIncome",
+        "ResidentialLease",
+        "CommercialSale",
+        "CommercialLease",
+        "BusinessOpportunity",
+        "Farm",
+        "Land",
+        "ManufacturedInPark"
+      ]
+    },
+    "PropertySubType": {
+      "type": "string"
+    },
+    "ListPrice": {
+      "type": "number"
+    },
+    "OriginalListPrice": {
+      "type": "number"
+    },
+    "ClosePrice": {
+      "type": "number"
+    },
+    "ListAgentMlsId": {
+      "type": "string"
+    },
+    "ListOfficeMlsId": {
+      "type": "string"
+    },
+    "BuyerAgentMlsId": {
+      "type": "string"
+    },
+    "BuyerOfficeMlsId": {
+      "type": "string"
+    },
+    "UnparsedAddress": {
+      "type": "string"
+    },
+    "City": {
+      "type": "string"
+    },
+    "StateOrProvince": {
+      "type": "string"
+    },
+    "PostalCode": {
+      "type": "string"
+    },
+    "Country": {
+      "type": "string"
+    },
+    "Latitude": {
+      "type": "number"
+    },
+    "Longitude": {
+      "type": "number"
+    },
+    "BedroomsTotal": {
+      "type": "integer"
+    },
+    "BathroomsTotalInteger": {
+      "type": "integer"
+    },
+    "LivingArea": {
+      "type": "number"
+    },
+    "LotSizeAcres": {
+      "type": "number"
+    },
+    "YearBuilt": {
+      "type": "integer"
+    },
+    "PublicRemarks": {
+      "type": "string"
+    },
+    "PrivateRemarks": {
+      "type": "string"
+    },
+    "ListingContractDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "ModificationTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "PhotosChangeTimestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "CloseDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "MlgCanView": {
+      "type": "boolean",
+      "description": "Whether the listing is currently viewable under license terms. Records with MlgCanView=false should be retained but suppressed from display."
+    },
+    "MlgCanUse": {
+      "type": "array",
+      "description": "Allowed use cases for the listing.",
+      "items": {
+        "type": "string",
+        "enum": ["IDX", "VOW", "BO", "PT"]
+      }
+    },
+    "Media": {
+      "type": "array",
+      "items": {
+        "$ref": "https://raw.githubusercontent.com/api-evangelist/mlsgrid/main/json-schema/mlsgrid-media-schema.json"
+      }
+    },
+    "Rooms": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "UnitTypes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

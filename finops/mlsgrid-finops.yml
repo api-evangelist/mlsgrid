@@ -1,0 +1,32 @@
+aid: mlsgrid
+name: MLS Grid FinOps Surface
+description: FinOps alignment for MLS Grid. The MLS Grid commercial surface is private (negotiated per-vendor, per-MLS contracts). No public billing API exists. This file documents the FinOps-relevant attributes a data consumer should track internally.
+specification: FinOps Framework / FOCUS 1.0 (aligned, not native)
+billingModel:
+  type: Subscription
+  publicPricing: false
+  contractTerm: Negotiated
+  invoicing: Direct (MLS Grid)
+costDimensions:
+- dimension: Subscription
+  description: Flat or tiered per-vendor subscription fee, negotiated.
+  billingFrequency: Monthly
+- dimension: PerMLS
+  description: Some pricing arrangements scale by the number of participating MLSs included in the feed.
+  billingFrequency: Monthly
+- dimension: UseCase
+  description: License terms differ across IDX, VOW, BO, and PT use cases. MlgCanUse on each record reflects what may be displayed.
+  billingFrequency: Contract
+usageSignals:
+- name: Records Replicated
+  source: MLS Grid account dashboard import status
+  description: Count of records ingested per MLS per period.
+- name: API Requests
+  source: Client-side instrumentation
+  description: Track against documented rate limits (2 RPS / 7,200 hr / 40,000 day).
+- name: Data Volume Downloaded
+  source: Client-side instrumentation
+  description: Track against the 4 GB/hour cap; media downloads dominate.
+reporting:
+  publicAPI: false
+  notes: No programmatic Usage API is publicly documented. Track usage via the MLS Grid web application dashboard and client-side metrics.

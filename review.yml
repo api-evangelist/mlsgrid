@@ -1,0 +1,55 @@
+aid: mlsgrid
+name: MLS Grid
+reviewedOn: '2026-05-25'
+reviewer: API Evangelist
+tier: 1
+tierName: Tier 1 — Standards-Aligned, Documented, Replication-Optimized
+classification: company
+domain: Real Estate
+summary: |
+  MLS Grid is a normalized, RESO Data Dictionary–compliant data distribution layer for U.S. residential MLS data.
+  Its Web API v2 is a clean OData v4 surface implementing the RESO Web API specification, with documented rate
+  limits, a single master data license agreement covering 50+ participating MLSs, and a well-defined incremental
+  replication pattern keyed on OriginatingSystemName + ModificationTimestamp. The combination of an open public
+  standard (RESO), a single license, and a documented OData surface puts MLS Grid clearly in Tier 1.
+strengths:
+- RESO Data Dictionary and RESO Web API compliance — open, well-governed industry standards.
+- Single master data license agreement covering all participating MLSs.
+- OData v4 surface with $select, $filter, $expand, $top, $count, and @odata.nextLink pagination.
+- Replication-first design with explicit signal fields (ModificationTimestamp, PhotosChangeTimestamp, MlgCanView).
+- Clear, documented rate limits (2 RPS, 7,200 hr, 40,000 day, 4 GB/hour) with HTTP 429 semantics.
+- Prefixed keys (OriginatingSystemName-namespaced) prevent collisions when consuming multiple MLSs.
+- 50+ participating MLSs reachable through a single feed.
+- Quarterly compliance audits centralize vendor oversight.
+- Standalone Media resource available where the originating MLS supports it (e.g. Northstar).
+gaps:
+- No OpenAPI specification published by MLS Grid (the OData $metadata endpoint exists but no first-party Swagger/OpenAPI).
+- No public GitHub organization with SDKs, client libraries, or sample code.
+- Pricing is not publicly published — every plan is negotiated.
+- No documented status page or public SLA.
+- No webhook or push delivery; clients must poll on the replication watermark.
+- No public sandbox or self-service trial.
+- Documentation does not enumerate all error codes or 4xx semantics beyond 401/429.
+recommendations:
+- Publish a first-party OpenAPI 3.x derived from the OData $metadata to broaden tool support beyond OData clients.
+- Open a public GitHub org with reference replication clients (Python, Node, .NET).
+- Publish a status page (status.mlsgrid.com) with historical uptime.
+- Document push / webhook patterns for new-listing and price-change events.
+- Publish baseline pricing tiers to reduce friction in vendor onboarding.
+artifacts:
+- openapi/mlsgrid-reso-web-api-openapi.yml
+- json-schema/mlsgrid-property-schema.json
+- json-schema/mlsgrid-media-schema.json
+- json-ld/mlsgrid-context.jsonld
+- capabilities/property-replication.yaml
+- capabilities/member-replication.yaml
+- capabilities/office-replication.yaml
+- capabilities/openhouse-replication.yaml
+- capabilities/media-replication.yaml
+- capabilities/lookup-replication.yaml
+- vocabulary/mlsgrid-vocabulary.yml
+- plans/mlsgrid-plans-pricing.yml
+- rate-limits/mlsgrid-rate-limits.yml
+- finops/mlsgrid-finops.yml
+- rules/mlsgrid-rules.yml
+- examples/mlsgrid-list-properties-example.json
