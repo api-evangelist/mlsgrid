@@ -1,0 +1,1804 @@
+{
+  "item": [
+    {
+      "id": "7ae7ed93-2531-4eb7-850c-d6f750dcd1a6",
+      "name": "Property",
+      "description": {
+        "content": "Property listings (RESO Data Dictionary Property resource).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5780ecbe-0ac9-4c73-b267-ea2e7e1da737",
+          "name": "List Properties",
+          "request": {
+            "name": "List Properties",
+            "description": {
+              "content": "Replicate Property listings filtered by `OriginatingSystemName` and `ModificationTimestamp`. Use `$expand=Media,Rooms,UnitTypes` to include nested resources and `@odata.nextLink` for pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Property"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Reduces payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "$count",
+                  "value": "<boolean>",
+                  "description": "When `true`, includes `@odata.count` in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fcccc9d-7c1b-4b17-93d2-5efe76706ba5",
+              "name": "Collection of Property records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"ListingKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"StandardStatus\": \"Delete\",\n      \"PropertyType\": \"ResidentialLease\",\n      \"ListPrice\": 6528.43843954091,\n      \"ModificationTimestamp\": \"2000-03-21T03:25:12.493Z\",\n      \"PhotosChangeTimestamp\": \"2004-06-17T02:22:06.808Z\",\n      \"MlgCanView\": false,\n      \"MlgCanUse\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Media\": [\n        {\n          \"MediaKey\": \"string\",\n          \"ResourceRecordKey\": \"string\",\n          \"OriginatingSystemName\": \"string\",\n          \"MediaURL\": \"string\",\n          \"MediaCategory\": \"string\",\n          \"Order\": 8615,\n          \"MediaModificationTimestamp\": \"1959-03-22T13:53:10.680Z\"\n        },\n        {\n          \"MediaKey\": \"string\",\n          \"ResourceRecordKey\": \"string\",\n          \"OriginatingSystemName\": \"string\",\n          \"MediaURL\": \"string\",\n          \"MediaCategory\": \"string\",\n          \"Order\": 9593,\n          \"MediaModificationTimestamp\": \"2012-05-07T08:17:37.495Z\"\n        }\n      ],\n      \"Rooms\": [\n        {\n          \"RoomKey\": \"string\",\n          \"RoomType\": \"string\",\n          \"RoomLevel\": \"string\",\n          \"RoomLength\": 3605.4364885588543,\n          \"RoomWidth\": 6786.755519927323\n        },\n        {\n          \"RoomKey\": \"string\",\n          \"RoomType\": \"string\",\n          \"RoomLevel\": \"string\",\n          \"RoomLength\": 8779.048516625182,\n          \"RoomWidth\": 3900.543266833624\n        }\n      ],\n      \"UnitTypes\": [\n        {\n          \"UnitTypeKey\": \"string\",\n          \"UnitTypeType\": \"string\",\n          \"UnitTypeBedsTotal\": 8291,\n          \"UnitTypeBathsTotal\": 1427.2302551568184\n        },\n        {\n          \"UnitTypeKey\": \"string\",\n          \"UnitTypeType\": \"string\",\n          \"UnitTypeBedsTotal\": 1439,\n          \"UnitTypeBathsTotal\": 6788.015198641861\n        }\n      ]\n    },\n    {\n      \"ListingKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"StandardStatus\": \"Active\",\n      \"PropertyType\": \"Farm\",\n      \"ListPrice\": 1299.3531735548313,\n      \"ModificationTimestamp\": \"1946-11-04T14:36:15.810Z\",\n      \"PhotosChangeTimestamp\": \"1993-10-11T15:09:54.882Z\",\n      \"MlgCanView\": false,\n      \"MlgCanUse\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Media\": [\n        {\n          \"MediaKey\": \"string\",\n          \"ResourceRecordKey\": \"string\",\n          \"OriginatingSystemName\": \"string\",\n          \"MediaURL\": \"string\",\n          \"MediaCategory\": \"string\",\n          \"Order\": 1412,\n          \"MediaModificationTimestamp\": \"1967-10-27T22:22:31.898Z\"\n        },\n        {\n          \"MediaKey\": \"string\",\n          \"ResourceRecordKey\": \"string\",\n          \"OriginatingSystemName\": \"string\",\n          \"MediaURL\": \"string\",\n          \"MediaCategory\": \"string\",\n          \"Order\": 421,\n          \"MediaModificationTimestamp\": \"1982-01-11T18:48:18.237Z\"\n        }\n      ],\n      \"Rooms\": [\n        {\n          \"RoomKey\": \"string\",\n          \"RoomType\": \"string\",\n          \"RoomLevel\": \"string\",\n          \"RoomLength\": 2215.7216707683015,\n          \"RoomWidth\": 480.7483867851259\n        },\n        {\n          \"RoomKey\": \"string\",\n          \"RoomType\": \"string\",\n          \"RoomLevel\": \"string\",\n          \"RoomLength\": 4233.693192538991,\n          \"RoomWidth\": 5063.1035999791575\n        }\n      ],\n      \"UnitTypes\": [\n        {\n          \"UnitTypeKey\": \"string\",\n          \"UnitTypeType\": \"string\",\n          \"UnitTypeBedsTotal\": 4544,\n          \"UnitTypeBathsTotal\": 5521.067417373918\n        },\n        {\n          \"UnitTypeKey\": \"string\",\n          \"UnitTypeType\": \"string\",\n          \"UnitTypeBedsTotal\": 5711,\n          \"UnitTypeBathsTotal\": 3406.6260328346034\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9bc8a3c-b566-4049-b5ec-49fbb127a02c",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4e945ecd-b0a9-46fa-911e-30c0bcb31a19",
+              "name": "Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until the client may retry.",
+                  "key": "Retry-After",
+                  "value": "6901"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ebbcdda-ac06-48f0-8684-5eb078e96ecc",
+          "name": "Get Property by Key",
+          "request": {
+            "name": "Get Property by Key",
+            "description": {
+              "content": "Retrieve a single Property record by its prefixed `ListingKey` (e.g. `actris-1234567`).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Property('{{ListingKey}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0a228fc-894e-4786-87cf-857758363b7c",
+              "name": "A single Property record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property('{{ListingKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ListingKey\": \"string\",\n  \"OriginatingSystemName\": \"string\",\n  \"StandardStatus\": \"ActiveUnderContract\",\n  \"PropertyType\": \"ResidentialIncome\",\n  \"ListPrice\": 1843.4908981901021,\n  \"ModificationTimestamp\": \"1992-01-09T20:56:48.764Z\",\n  \"PhotosChangeTimestamp\": \"1973-04-15T04:10:01.339Z\",\n  \"MlgCanView\": true,\n  \"MlgCanUse\": [\n    \"string\",\n    \"string\"\n  ],\n  \"Media\": [\n    {\n      \"MediaKey\": \"string\",\n      \"ResourceRecordKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"MediaURL\": \"string\",\n      \"MediaCategory\": \"string\",\n      \"Order\": 1866,\n      \"MediaModificationTimestamp\": \"2004-02-24T13:50:00.471Z\"\n    },\n    {\n      \"MediaKey\": \"string\",\n      \"ResourceRecordKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"MediaURL\": \"string\",\n      \"MediaCategory\": \"string\",\n      \"Order\": 1701,\n      \"MediaModificationTimestamp\": \"1981-01-06T20:10:37.911Z\"\n    }\n  ],\n  \"Rooms\": [\n    {\n      \"RoomKey\": \"string\",\n      \"RoomType\": \"string\",\n      \"RoomLevel\": \"string\",\n      \"RoomLength\": 324.29643412353994,\n      \"RoomWidth\": 273.947297024395\n    },\n    {\n      \"RoomKey\": \"string\",\n      \"RoomType\": \"string\",\n      \"RoomLevel\": \"string\",\n      \"RoomLength\": 37.48500739562344,\n      \"RoomWidth\": 8767.522741398412\n    }\n  ],\n  \"UnitTypes\": [\n    {\n      \"UnitTypeKey\": \"string\",\n      \"UnitTypeType\": \"string\",\n      \"UnitTypeBedsTotal\": 898,\n      \"UnitTypeBathsTotal\": 6609.970297072566\n    },\n    {\n      \"UnitTypeKey\": \"string\",\n      \"UnitTypeType\": \"string\",\n      \"UnitTypeBedsTotal\": 8318,\n      \"UnitTypeBathsTotal\": 337.7641331990366\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7a5c8cf-939b-4b22-852a-86daa955f304",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property('{{ListingKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6e6cffa3-5051-4605-b602-30861b59d97d",
+              "name": "Property not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property('{{ListingKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9e22fe40-2afd-4ae8-96ac-ff9448beb939",
+      "name": "Member",
+      "description": {
+        "content": "Real estate agents (RESO Data Dictionary Member resource).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e624055-a3c7-4318-9570-cf78595505a7",
+          "name": "List Members",
+          "request": {
+            "name": "List Members",
+            "description": {
+              "content": "Replicate Member (agent) records filtered by `OriginatingSystemName` and `ModificationTimestamp`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Member"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Reduces payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "$count",
+                  "value": "<boolean>",
+                  "description": "When `true`, includes `@odata.count` in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b479781-c70e-4c45-a253-8b41d082b702",
+              "name": "Collection of Member records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"MemberKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"MemberFirstName\": \"string\",\n      \"MemberLastName\": \"string\",\n      \"MemberEmail\": \"string\",\n      \"MemberMlsId\": \"string\",\n      \"ModificationTimestamp\": \"2002-01-24T16:23:45.560Z\",\n      \"MlgCanView\": false\n    },\n    {\n      \"MemberKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"MemberFirstName\": \"string\",\n      \"MemberLastName\": \"string\",\n      \"MemberEmail\": \"string\",\n      \"MemberMlsId\": \"string\",\n      \"ModificationTimestamp\": \"1949-04-06T10:45:41.309Z\",\n      \"MlgCanView\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "803bbf3f-74cd-49fe-8850-f521df57232b",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe262ad9-7d3f-4f5a-a07c-3bca0136bded",
+              "name": "Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until the client may retry.",
+                  "key": "Retry-After",
+                  "value": "6901"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "82207487-0b3d-4be6-9e13-068db00eb0ea",
+      "name": "Office",
+      "description": {
+        "content": "Brokerage offices (RESO Data Dictionary Office resource).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c276d39f-96bc-4b45-89ee-4f914d6b88cf",
+          "name": "List Offices",
+          "request": {
+            "name": "List Offices",
+            "description": {
+              "content": "Replicate Office (brokerage) records filtered by `OriginatingSystemName` and `ModificationTimestamp`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Office"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Reduces payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "$count",
+                  "value": "<boolean>",
+                  "description": "When `true`, includes `@odata.count` in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8990cf97-9392-4b9f-ae82-40e8878cfd63",
+              "name": "Collection of Office records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Office"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"OfficeKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"OfficeName\": \"string\",\n      \"OfficeMlsId\": \"string\",\n      \"ModificationTimestamp\": \"1982-04-26T03:46:23.429Z\",\n      \"MlgCanView\": false\n    },\n    {\n      \"OfficeKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"OfficeName\": \"string\",\n      \"OfficeMlsId\": \"string\",\n      \"ModificationTimestamp\": \"1973-12-31T02:56:12.235Z\",\n      \"MlgCanView\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db1f7505-1d8f-4a6c-9c46-65712725ae3e",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Office"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1c133d46-6ef9-4f0d-ad50-a16afac4b343",
+              "name": "Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Office"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until the client may retry.",
+                  "key": "Retry-After",
+                  "value": "6901"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2cb3106c-d64d-497e-a724-ed3bb776d283",
+      "name": "OpenHouse",
+      "description": {
+        "content": "Open house events (RESO Data Dictionary OpenHouse resource).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a034356-de3d-4b13-a3ee-e5d43e229a08",
+          "name": "List Open Houses",
+          "request": {
+            "name": "List Open Houses",
+            "description": {
+              "content": "Replicate OpenHouse events filtered by `OriginatingSystemName` and `ModificationTimestamp`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "OpenHouse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Reduces payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4caaeb3-af0f-4b73-bd26-28fb67516f49",
+              "name": "Collection of OpenHouse records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "OpenHouse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"OpenHouseKey\": \"string\",\n      \"ListingKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"OpenHouseStartTime\": \"1997-04-27T16:48:31.925Z\",\n      \"OpenHouseEndTime\": \"2007-03-12T07:38:02.866Z\",\n      \"ModificationTimestamp\": \"2014-03-28T21:04:16.836Z\"\n    },\n    {\n      \"OpenHouseKey\": \"string\",\n      \"ListingKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"OpenHouseStartTime\": \"2006-07-29T19:16:33.394Z\",\n      \"OpenHouseEndTime\": \"1949-06-02T23:38:13.894Z\",\n      \"ModificationTimestamp\": \"1952-10-13T19:09:42.065Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf3a64a1-4020-410f-adcf-2d160bedf5fa",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "OpenHouse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b804c287-8d3b-47a9-a4eb-1cb57c50f500",
+              "name": "Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "OpenHouse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until the client may retry.",
+                  "key": "Retry-After",
+                  "value": "6901"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "61df15de-ce79-4bfa-a8fd-0d93969d2934",
+      "name": "Media",
+      "description": {
+        "content": "Listing media (photos, virtual tours) expanded from Property.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a6ad2ab-80e1-46be-9ffa-7e44842938c2",
+          "name": "List Media",
+          "request": {
+            "name": "List Media",
+            "description": {
+              "content": "Replicate Media records as a standalone resource where supported by the originating MLS. Use `MediaModificationTimestamp` for incremental replication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Reduces payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91b985a0-b72a-4681-b673-b34ddf90d88f",
+              "name": "Collection of Media records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"MediaKey\": \"string\",\n      \"ResourceRecordKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"MediaURL\": \"string\",\n      \"MediaCategory\": \"string\",\n      \"Order\": 4315,\n      \"MediaModificationTimestamp\": \"1973-06-20T02:37:40.833Z\"\n    },\n    {\n      \"MediaKey\": \"string\",\n      \"ResourceRecordKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"MediaURL\": \"string\",\n      \"MediaCategory\": \"string\",\n      \"Order\": 1788,\n      \"MediaModificationTimestamp\": \"1948-05-15T09:29:31.011Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "794e07b0-f83d-4c14-83dc-a5cf511b6188",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "997bc3bc-df0e-4be7-94be-b1c644cbe295",
+              "name": "Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until the client may retry.",
+                  "key": "Retry-After",
+                  "value": "6901"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7086bce2-3612-4317-8539-71ed031c48e4",
+      "name": "Lookup",
+      "description": {
+        "content": "Enumerated lookup values per originating MLS.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1f6ade2-4709-4d53-964e-693f18193dba",
+          "name": "List Lookup Values",
+          "request": {
+            "name": "List Lookup Values",
+            "description": {
+              "content": "Retrieve enumerated lookup values per originating MLS. Filter by `OriginatingSystemName` and `LookupName`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Reduces payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17bd07cd-3b1d-49bf-8a65-151d298416bc",
+              "name": "Collection of Lookup records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"LookupKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"LookupName\": \"string\",\n      \"LookupValue\": \"string\",\n      \"StandardLookupValue\": \"string\",\n      \"ModificationTimestamp\": \"1973-01-18T21:02:34.511Z\"\n    },\n    {\n      \"LookupKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"LookupName\": \"string\",\n      \"LookupValue\": \"string\",\n      \"StandardLookupValue\": \"string\",\n      \"ModificationTimestamp\": \"1976-05-18T02:20:39.411Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87dbc3ec-10f6-46c5-bcad-b6fb64b1e2d9",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8aedd505-21d4-41e7-a9d4-91fdc89033aa",
+              "name": "Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until the client may retry.",
+                  "key": "Retry-After",
+                  "value": "6901"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f830e77b-5e02-4797-bcc8-67b60f83d3aa",
+      "name": "Metadata",
+      "description": {
+        "content": "OData service and EDMX metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ab818e27-b0c0-4861-88b8-fd5def2d0208",
+          "name": "Get Service Metadata",
+          "request": {
+            "name": "Get Service Metadata",
+            "description": {
+              "content": "Returns the OData v4 EDMX metadata document describing all entity types, properties, navigation properties, and enumerations exposed by the MLS Grid Web API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "$metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00820561-a5a7-4238-9207-e6e4c4e948b2",
+              "name": "EDMX metadata document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "$metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "5e730c68-b88a-40bb-9d61-98c5fe5aa9cd",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "$metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mlsgrid.com/v2",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Prefixed MLS Grid listing key.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "ListingKey"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "33598549-5b5a-4c5c-a0a8-b71c61e7016a",
+    "name": "MLS Grid RESO Web API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MLS Grid RESO Web API is a normalized, RESO Data Dictionary–compliant OData v4 Web API for replicating\nMultiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network. The\nAPI is optimized for incremental replication using `ModificationTimestamp`, supports `$select`, `$filter`,\nand `$expand` for related resources (Media, Rooms, UnitTypes), and applies a single license agreement across\nall participating MLSs.\n\nAuthentication uses long-lived OAuth 2.0 bearer tokens issued through the MLS Grid web application.\n\n\nContact Support:\n Name: MLS Grid Support\n Email: support@mlsgrid.com",
+      "type": "text/plain"
+    }
+  }
+}

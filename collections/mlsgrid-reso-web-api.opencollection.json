@@ -1,0 +1,318 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MLS Grid RESO Web API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Service Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mlsgrid.com/v2/$metadata"
+          },
+          "docs": "Returns the OData v4 EDMX metadata document describing all entity types, properties, navigation properties, and enumerations exposed by the MLS Grid Web API."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Property",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mlsgrid.com/v2/Property",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z",
+                "type": "query",
+                "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+              },
+              {
+                "name": "$select",
+                "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp",
+                "type": "query",
+                "description": "Comma-separated list of fields to return. Reduces payload size."
+              },
+              {
+                "name": "$expand",
+                "value": "Media,Rooms,UnitTypes",
+                "type": "query",
+                "description": "Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, includes `@odata.count` in the response."
+              }
+            ]
+          },
+          "docs": "Replicate Property listings filtered by `OriginatingSystemName` and `ModificationTimestamp`. Use `$expand=Media,Rooms,UnitTypes` to include nested resources and `@odata.nextLink` for pagination."
+        },
+        {
+          "info": {
+            "name": "Get Property by Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mlsgrid.com/v2/Property(':ListingKey')",
+            "params": [
+              {
+                "name": "ListingKey",
+                "value": "",
+                "type": "path",
+                "description": "Prefixed MLS Grid listing key."
+              },
+              {
+                "name": "$expand",
+                "value": "Media,Rooms,UnitTypes",
+                "type": "query",
+                "description": "Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`."
+              }
+            ]
+          },
+          "docs": "Retrieve a single Property record by its prefixed `ListingKey` (e.g. `actris-1234567`)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Member",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mlsgrid.com/v2/Member",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z",
+                "type": "query",
+                "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+              },
+              {
+                "name": "$select",
+                "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp",
+                "type": "query",
+                "description": "Comma-separated list of fields to return. Reduces payload size."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, includes `@odata.count` in the response."
+              }
+            ]
+          },
+          "docs": "Replicate Member (agent) records filtered by `OriginatingSystemName` and `ModificationTimestamp`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Office",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Offices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mlsgrid.com/v2/Office",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z",
+                "type": "query",
+                "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+              },
+              {
+                "name": "$select",
+                "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp",
+                "type": "query",
+                "description": "Comma-separated list of fields to return. Reduces payload size."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "When `true`, includes `@odata.count` in the response."
+              }
+            ]
+          },
+          "docs": "Replicate Office (brokerage) records filtered by `OriginatingSystemName` and `ModificationTimestamp`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OpenHouse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Open Houses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mlsgrid.com/v2/OpenHouse",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z",
+                "type": "query",
+                "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+              },
+              {
+                "name": "$select",
+                "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp",
+                "type": "query",
+                "description": "Comma-separated list of fields to return. Reduces payload size."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              }
+            ]
+          },
+          "docs": "Replicate OpenHouse events filtered by `OriginatingSystemName` and `ModificationTimestamp`."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Media",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mlsgrid.com/v2/Media",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z",
+                "type": "query",
+                "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+              },
+              {
+                "name": "$select",
+                "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp",
+                "type": "query",
+                "description": "Comma-separated list of fields to return. Reduces payload size."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              }
+            ]
+          },
+          "docs": "Replicate Media records as a standalone resource where supported by the originating MLS. Use `MediaModificationTimestamp` for incremental replication."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Lookup Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mlsgrid.com/v2/Lookup",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z",
+                "type": "query",
+                "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+              },
+              {
+                "name": "$select",
+                "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp",
+                "type": "query",
+                "description": "Comma-separated list of fields to return. Reduces payload size."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              }
+            ]
+          },
+          "docs": "Retrieve enumerated lookup values per originating MLS. Filter by `OriginatingSystemName` and `LookupName`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
