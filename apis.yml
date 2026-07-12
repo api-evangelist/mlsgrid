@@ -33,6 +33,10 @@ apis:
       Authenticated with long-lived OAuth 2.0 bearer tokens. Optimized for bulk replication via $filter on
       OriginatingSystemName and ModificationTimestamp with $expand of Media, Rooms, and UnitTypes.
 common:
+  - type: DomainSecurity
+    url: security/mlsgrid-domain-security.yml
+  - type: Authentication
+    url: authentication/mlsgrid-authentication.yml
   - url: https://www.mlsgrid.com
     type: Portal
   - url: https://docs.mlsgrid.com

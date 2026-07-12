@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/mlsgrid-reso-web-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: OAuth2
+  description: Long-lived OAuth 2.0 bearer token issued via the MLS Grid web application token
+    tab.
+  sources:
+  - openapi/mlsgrid-reso-web-api-openapi.yml
