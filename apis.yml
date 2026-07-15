@@ -33,6 +33,8 @@ apis:
       Authenticated with long-lived OAuth 2.0 bearer tokens. Optimized for bulk replication via $filter on
       OriginatingSystemName and ModificationTimestamp with $expand of Media, Rooms, and UnitTypes.
 common:
+  - type: AgenticAccess
+    url: agentic-access/mlsgrid-agentic-access.yml
   - type: DomainSecurity
     url: security/mlsgrid-domain-security.yml
   - type: Authentication
