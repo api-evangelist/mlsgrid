@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: MLS Grid RESO Web Lookup API
+  description: 'The MLS Grid RESO Web API is a normalized, RESO Data Dictionary–compliant OData v4 Web API for replicating
+
+    Multiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network. The
+
+    API is optimized for incremental replication using `ModificationTimestamp`, supports `$select`, `$filter`,
+
+    and `$expand` for related resources (Media, Rooms, UnitTypes), and applies a single license agreement across
+
+    all participating MLSs.
+
+
+    Authentication uses long-lived OAuth 2.0 bearer tokens issued through the MLS Grid web application.
+
+    '
+  version: 2.0.0
+  contact:
+    name: MLS Grid Support
+    email: support@mlsgrid.com
+    url: https://www.mlsgrid.com
+  license:
+    name: MLS Grid Master Data License Agreement
+    url: https://www.mlsgrid.com
+  x-logo:
+    url: https://www.mlsgrid.com
+servers:
+- url: https://api.mlsgrid.com/v2
+  description: MLS Grid Web API v2 (production)
+security:
+- bearerAuth: []
+tags:
+- name: Lookup
+  description: Enumerated lookup values per originating MLS.
+paths:
+  /Lookup:
+    get:
+      tags:
+      - Lookup
+      summary: List Lookup Values
+      description: Retrieve enumerated lookup values per originating MLS. Filter by `OriginatingSystemName` and `LookupName`.
+      operationId: listLookups
+      parameters:
+      - $ref: '#/components/parameters/Filter'
+      - $ref: '#/components/parameters/Select'
+      - $ref: '#/components/parameters/Top'
+      responses:
+        '200':
+          description: Collection of Lookup records.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LookupCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  parameters:
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return. Reduces payload size.
+      schema:
+        type: string
+      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
+    Filter:
+      name: $filter
+      in: query
+      description: 'OData `$filter` expression. Required pattern uses `OriginatingSystemName eq ''<system>''` combined with
+
+        `ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are
+
+        restricted to a limited set of searchable fields documented per resource.
+
+        '
+      schema:
+        type: string
+      example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
+    Top:
+      name: $top
+      in: query
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        maximum: 1000
+  schemas:
+    LookupCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.nextLink':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Lookup'
+    Lookup:
+      type: object
+      properties:
+        LookupKey:
+          type: string
+        OriginatingSystemName:
+          type: string
+        LookupName:
+          type: string
+        LookupValue:
+          type: string
+        StandardLookupValue:
+          type: string
+        ModificationTimestamp:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+    RateLimited:
+      description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds until the client may retry.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2
+      description: Long-lived OAuth 2.0 bearer token issued via the MLS Grid web application token tab.
