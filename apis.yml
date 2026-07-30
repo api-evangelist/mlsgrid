@@ -1,37 +1,174 @@
 aid: mlsgrid
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/mlsgrid.png
 url: https://raw.githubusercontent.com/api-evangelist/mlsgrid/refs/heads/main/apis.yml
 apis:
-  - aid: mlsgrid:mlsgrid-reso-web-api
-    name: MLS Grid RESO Web API
-    tags:
-      - Real Estate
-      - MLS
-      - RESO
-      - OData
-      - Property
-      - Replication
-    humanURL: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
-    baseURL: https://api.mlsgrid.com/v2/
-    properties:
-      - url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
-        type: Documentation
-      - url: https://docs.mlsgrid.com/master.md
-        type: Documentation
-      - url: https://api.mlsgrid.com/v2/$metadata
-        type: Metadata
-      - url: openapi/mlsgrid-reso-web-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/mlsgrid-property-schema.json
-        type: JSONSchema
-      - url: json-schema/mlsgrid-media-schema.json
-        type: JSONSchema
-      - url: json-ld/mlsgrid-context.jsonld
-        type: JSONLD
-    description: >-
-      Normalized, RESO Data Dictionary–compliant OData v4 Web API for incremental replication of MLS listing data —
-      Property, Member, Office, OpenHouse, Media, and Lookup resources — across the participating MLS Grid boards.
-      Authenticated with long-lived OAuth 2.0 bearer tokens. Optimized for bulk replication via $filter on
-      OriginatingSystemName and ModificationTimestamp with $expand of Media, Rooms, and UnitTypes.
+- aid: mlsgrid:mlsgrid-lookup-api
+  name: mlsgrid Lookup API
+  description: Enumerated lookup values per originating MLS.
+  humanURL: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  baseURL: https://api.mlsgrid.com/v2/
+  tags:
+  - Lookup
+  properties:
+  - type: OpenAPI
+    url: openapi/mlsgrid-lookup-api-openapi.yml
+  - type: Documentation
+    url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  - type: Documentation
+    url: https://docs.mlsgrid.com/master.md
+  - type: Metadata
+    url: https://api.mlsgrid.com/v2/$metadata
+  - type: JSONSchema
+    url: json-schema/mlsgrid-property-schema.json
+  - type: JSONSchema
+    url: json-schema/mlsgrid-media-schema.json
+  - type: JSONLD
+    url: json-ld/mlsgrid-context.jsonld
+- aid: mlsgrid:mlsgrid-media-api
+  name: mlsgrid Media API
+  description: Listing media (photos, virtual tours) expanded from Property.
+  humanURL: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  baseURL: https://api.mlsgrid.com/v2/
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/mlsgrid-media-api-openapi.yml
+  - type: Documentation
+    url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  - type: Documentation
+    url: https://docs.mlsgrid.com/master.md
+  - type: Metadata
+    url: https://api.mlsgrid.com/v2/$metadata
+  - type: JSONSchema
+    url: json-schema/mlsgrid-property-schema.json
+  - type: JSONSchema
+    url: json-schema/mlsgrid-media-schema.json
+  - type: JSONLD
+    url: json-ld/mlsgrid-context.jsonld
+- aid: mlsgrid:mlsgrid-member-api
+  name: mlsgrid Member API
+  description: Real estate agents (RESO Data Dictionary Member resource).
+  humanURL: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  baseURL: https://api.mlsgrid.com/v2/
+  tags:
+  - Member
+  properties:
+  - type: OpenAPI
+    url: openapi/mlsgrid-member-api-openapi.yml
+  - type: Documentation
+    url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  - type: Documentation
+    url: https://docs.mlsgrid.com/master.md
+  - type: Metadata
+    url: https://api.mlsgrid.com/v2/$metadata
+  - type: JSONSchema
+    url: json-schema/mlsgrid-property-schema.json
+  - type: JSONSchema
+    url: json-schema/mlsgrid-media-schema.json
+  - type: JSONLD
+    url: json-ld/mlsgrid-context.jsonld
+- aid: mlsgrid:mlsgrid-metadata-api
+  name: mlsgrid Metadata API
+  description: OData service and EDMX metadata.
+  humanURL: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  baseURL: https://api.mlsgrid.com/v2/
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/mlsgrid-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  - type: Documentation
+    url: https://docs.mlsgrid.com/master.md
+  - type: Metadata
+    url: https://api.mlsgrid.com/v2/$metadata
+  - type: JSONSchema
+    url: json-schema/mlsgrid-property-schema.json
+  - type: JSONSchema
+    url: json-schema/mlsgrid-media-schema.json
+  - type: JSONLD
+    url: json-ld/mlsgrid-context.jsonld
+- aid: mlsgrid:mlsgrid-office-api
+  name: mlsgrid Office API
+  description: Brokerage offices (RESO Data Dictionary Office resource).
+  humanURL: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  baseURL: https://api.mlsgrid.com/v2/
+  tags:
+  - Office
+  properties:
+  - type: OpenAPI
+    url: openapi/mlsgrid-office-api-openapi.yml
+  - type: Documentation
+    url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  - type: Documentation
+    url: https://docs.mlsgrid.com/master.md
+  - type: Metadata
+    url: https://api.mlsgrid.com/v2/$metadata
+  - type: JSONSchema
+    url: json-schema/mlsgrid-property-schema.json
+  - type: JSONSchema
+    url: json-schema/mlsgrid-media-schema.json
+  - type: JSONLD
+    url: json-ld/mlsgrid-context.jsonld
+- aid: mlsgrid:mlsgrid-openhouse-api
+  name: mlsgrid OpenHouse API
+  description: Open house events (RESO Data Dictionary OpenHouse resource).
+  humanURL: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  baseURL: https://api.mlsgrid.com/v2/
+  tags:
+  - OpenHouse
+  properties:
+  - type: OpenAPI
+    url: openapi/mlsgrid-openhouse-api-openapi.yml
+  - type: Documentation
+    url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  - type: Documentation
+    url: https://docs.mlsgrid.com/master.md
+  - type: Metadata
+    url: https://api.mlsgrid.com/v2/$metadata
+  - type: JSONSchema
+    url: json-schema/mlsgrid-property-schema.json
+  - type: JSONSchema
+    url: json-schema/mlsgrid-media-schema.json
+  - type: JSONLD
+    url: json-ld/mlsgrid-context.jsonld
+- aid: mlsgrid:mlsgrid-property-api
+  name: mlsgrid Property API
+  description: Property listings (RESO Data Dictionary Property resource).
+  humanURL: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  baseURL: https://api.mlsgrid.com/v2/
+  tags:
+  - Property
+  properties:
+  - type: OpenAPI
+    url: openapi/mlsgrid-property-api-openapi.yml
+  - type: Documentation
+    url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  - type: Documentation
+    url: https://docs.mlsgrid.com/master.md
+  - type: Metadata
+    url: https://api.mlsgrid.com/v2/$metadata
+  - type: JSONSchema
+    url: json-schema/mlsgrid-property-schema.json
+  - type: JSONSchema
+    url: json-schema/mlsgrid-media-schema.json
+  - type: JSONLD
+    url: json-ld/mlsgrid-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/mlsgrid-agentic-access.yml
