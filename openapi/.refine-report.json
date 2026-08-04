@@ -1,0 +1,26 @@
+{
+  "provider": "mlsgrid",
+  "sources": [
+    "mlsgrid-lookup-api-openapi.yml",
+    "mlsgrid-media-api-openapi.yml",
+    "mlsgrid-member-api-openapi.yml",
+    "mlsgrid-metadata-api-openapi.yml",
+    "mlsgrid-office-api-openapi.yml",
+    "mlsgrid-openhouse-api-openapi.yml",
+    "mlsgrid-property-api-openapi.yml"
+  ],
+  "outputs": [
+    "mlsgrid-lookup-api-openapi.yml",
+    "mlsgrid-media-api-openapi.yml",
+    "mlsgrid-member-api-openapi.yml",
+    "mlsgrid-metadata-api-openapi.yml",
+    "mlsgrid-office-api-openapi.yml",
+    "mlsgrid-openhouse-api-openapi.yml",
+    "mlsgrid-property-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
