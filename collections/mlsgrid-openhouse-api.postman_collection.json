@@ -1,0 +1,261 @@
+{
+  "item": [
+    {
+      "id": "19a10368-225e-4d6b-a27f-c754c1ef1ea9",
+      "name": "OpenHouse",
+      "description": {
+        "content": "Open house events (RESO Data Dictionary OpenHouse resource).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "616308c4-a099-4969-bfa7-61999ad2b05a",
+          "name": "List Open Houses",
+          "request": {
+            "name": "List Open Houses",
+            "description": {
+              "content": "Replicate OpenHouse events filtered by `OriginatingSystemName` and `ModificationTimestamp`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "OpenHouse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Reduces payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cff61a29-bbc7-4b20-a78a-e2b50a051bee",
+              "name": "Collection of OpenHouse records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "OpenHouse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"OpenHouseKey\": \"string\",\n      \"ListingKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"OpenHouseStartTime\": \"1947-10-12T09:16:42.143Z\",\n      \"OpenHouseEndTime\": \"1950-03-03T04:09:04.656Z\",\n      \"ModificationTimestamp\": \"2013-04-30T22:09:46.885Z\"\n    },\n    {\n      \"OpenHouseKey\": \"string\",\n      \"ListingKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"OpenHouseStartTime\": \"1965-12-16T12:55:58.801Z\",\n      \"OpenHouseEndTime\": \"2000-02-25T23:38:22.145Z\",\n      \"ModificationTimestamp\": \"1996-04-02T18:03:38.640Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0ee4a27-7c3a-43d1-945c-d3db607789fa",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "OpenHouse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "474880cd-24af-4a88-b90b-1f6e222d38c8",
+              "name": "Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "OpenHouse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until the client may retry.",
+                  "key": "Retry-After",
+                  "value": "8639"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mlsgrid.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "db9be8af-086b-4b92-ae90-a979017318af",
+    "name": "MLS Grid RESO Web Lookup OpenHouse API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MLS Grid RESO Web API is a normalized, RESO Data Dictionary–compliant OData v4 Web API for replicating\nMultiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network. The\nAPI is optimized for incremental replication using `ModificationTimestamp`, supports `$select`, `$filter`,\nand `$expand` for related resources (Media, Rooms, UnitTypes), and applies a single license agreement across\nall participating MLSs.\n\nAuthentication uses long-lived OAuth 2.0 bearer tokens issued through the MLS Grid web application.\n\n\nContact Support:\n Name: MLS Grid Support\n Email: support@mlsgrid.com",
+      "type": "text/plain"
+    }
+  }
+}

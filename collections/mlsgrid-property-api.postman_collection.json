@@ -1,0 +1,485 @@
+{
+  "item": [
+    {
+      "id": "b4f2f928-bb01-40ba-80dd-5e74f5717713",
+      "name": "Property",
+      "description": {
+        "content": "Property listings (RESO Data Dictionary Property resource).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3b10d74-7f0c-43d0-996e-131943ad25cb",
+          "name": "List Properties",
+          "request": {
+            "name": "List Properties",
+            "description": {
+              "content": "Replicate Property listings filtered by `OriginatingSystemName` and `ModificationTimestamp`. Use `$expand=Media,Rooms,UnitTypes` to include nested resources and `@odata.nextLink` for pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Property"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Reduces payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "$count",
+                  "value": "<boolean>",
+                  "description": "When `true`, includes `@odata.count` in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f08ee3d1-383b-4e24-949a-8816511e7dd9",
+              "name": "Collection of Property records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"ListingKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"StandardStatus\": \"Closed\",\n      \"PropertyType\": \"Land\",\n      \"ListPrice\": 3874.519741831558,\n      \"ModificationTimestamp\": \"2013-06-10T10:03:57.580Z\",\n      \"PhotosChangeTimestamp\": \"1971-07-27T21:53:01.689Z\",\n      \"MlgCanView\": false,\n      \"MlgCanUse\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Media\": [\n        {\n          \"MediaKey\": \"string\",\n          \"ResourceRecordKey\": \"string\",\n          \"OriginatingSystemName\": \"string\",\n          \"MediaURL\": \"string\",\n          \"MediaCategory\": \"string\",\n          \"Order\": 1884,\n          \"MediaModificationTimestamp\": \"1984-03-13T12:18:28.022Z\"\n        },\n        {\n          \"MediaKey\": \"string\",\n          \"ResourceRecordKey\": \"string\",\n          \"OriginatingSystemName\": \"string\",\n          \"MediaURL\": \"string\",\n          \"MediaCategory\": \"string\",\n          \"Order\": 6123,\n          \"MediaModificationTimestamp\": \"2022-10-16T09:21:52.932Z\"\n        }\n      ],\n      \"Rooms\": [\n        {\n          \"RoomKey\": \"string\",\n          \"RoomType\": \"string\",\n          \"RoomLevel\": \"string\",\n          \"RoomLength\": 9589.022092730738,\n          \"RoomWidth\": 3182.310091275219\n        },\n        {\n          \"RoomKey\": \"string\",\n          \"RoomType\": \"string\",\n          \"RoomLevel\": \"string\",\n          \"RoomLength\": 856.2581591247842,\n          \"RoomWidth\": 5336.896818405914\n        }\n      ],\n      \"UnitTypes\": [\n        {\n          \"UnitTypeKey\": \"string\",\n          \"UnitTypeType\": \"string\",\n          \"UnitTypeBedsTotal\": 2593,\n          \"UnitTypeBathsTotal\": 3229.2971973670305\n        },\n        {\n          \"UnitTypeKey\": \"string\",\n          \"UnitTypeType\": \"string\",\n          \"UnitTypeBedsTotal\": 4495,\n          \"UnitTypeBathsTotal\": 1832.477277309107\n        }\n      ]\n    },\n    {\n      \"ListingKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"StandardStatus\": \"Active\",\n      \"PropertyType\": \"CommercialSale\",\n      \"ListPrice\": 4085.5094406671556,\n      \"ModificationTimestamp\": \"1952-03-04T00:48:17.575Z\",\n      \"PhotosChangeTimestamp\": \"1962-08-29T00:10:34.573Z\",\n      \"MlgCanView\": true,\n      \"MlgCanUse\": [\n        \"string\",\n        \"string\"\n      ],\n      \"Media\": [\n        {\n          \"MediaKey\": \"string\",\n          \"ResourceRecordKey\": \"string\",\n          \"OriginatingSystemName\": \"string\",\n          \"MediaURL\": \"string\",\n          \"MediaCategory\": \"string\",\n          \"Order\": 8661,\n          \"MediaModificationTimestamp\": \"1949-04-10T13:24:18.194Z\"\n        },\n        {\n          \"MediaKey\": \"string\",\n          \"ResourceRecordKey\": \"string\",\n          \"OriginatingSystemName\": \"string\",\n          \"MediaURL\": \"string\",\n          \"MediaCategory\": \"string\",\n          \"Order\": 2952,\n          \"MediaModificationTimestamp\": \"1977-12-17T23:59:32.449Z\"\n        }\n      ],\n      \"Rooms\": [\n        {\n          \"RoomKey\": \"string\",\n          \"RoomType\": \"string\",\n          \"RoomLevel\": \"string\",\n          \"RoomLength\": 4090.6407889435413,\n          \"RoomWidth\": 3512.2002335678794\n        },\n        {\n          \"RoomKey\": \"string\",\n          \"RoomType\": \"string\",\n          \"RoomLevel\": \"string\",\n          \"RoomLength\": 4437.366896453397,\n          \"RoomWidth\": 2767.668259877648\n        }\n      ],\n      \"UnitTypes\": [\n        {\n          \"UnitTypeKey\": \"string\",\n          \"UnitTypeType\": \"string\",\n          \"UnitTypeBedsTotal\": 3336,\n          \"UnitTypeBathsTotal\": 2798.2992329471367\n        },\n        {\n          \"UnitTypeKey\": \"string\",\n          \"UnitTypeType\": \"string\",\n          \"UnitTypeBedsTotal\": 6862,\n          \"UnitTypeBathsTotal\": 3386.0989778067074\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f11ef1d9-8d4d-4697-a1b9-32e7c10a8e83",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a09d450f-2b37-46be-a2ea-ba7113afc7b5",
+              "name": "Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until the client may retry.",
+                  "key": "Retry-After",
+                  "value": "6428"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d64044b-2e35-45a2-ab4e-dbbbfa68ab4a",
+          "name": "Get Property by Key",
+          "request": {
+            "name": "Get Property by Key",
+            "description": {
+              "content": "Retrieve a single Property record by its prefixed `ListingKey` (e.g. `actris-1234567`).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Property('{{ListingKey}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a3f9954-a22e-4b37-8f0c-2bacd0e3e77c",
+              "name": "A single Property record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property('{{ListingKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ListingKey\": \"string\",\n  \"OriginatingSystemName\": \"string\",\n  \"StandardStatus\": \"ComingSoon\",\n  \"PropertyType\": \"ManufacturedInPark\",\n  \"ListPrice\": 8493.260445740358,\n  \"ModificationTimestamp\": \"2005-10-18T11:29:54.284Z\",\n  \"PhotosChangeTimestamp\": \"1982-01-26T09:16:30.230Z\",\n  \"MlgCanView\": true,\n  \"MlgCanUse\": [\n    \"string\",\n    \"string\"\n  ],\n  \"Media\": [\n    {\n      \"MediaKey\": \"string\",\n      \"ResourceRecordKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"MediaURL\": \"string\",\n      \"MediaCategory\": \"string\",\n      \"Order\": 3914,\n      \"MediaModificationTimestamp\": \"2012-09-23T22:25:48.590Z\"\n    },\n    {\n      \"MediaKey\": \"string\",\n      \"ResourceRecordKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"MediaURL\": \"string\",\n      \"MediaCategory\": \"string\",\n      \"Order\": 9499,\n      \"MediaModificationTimestamp\": \"2015-11-10T03:08:17.702Z\"\n    }\n  ],\n  \"Rooms\": [\n    {\n      \"RoomKey\": \"string\",\n      \"RoomType\": \"string\",\n      \"RoomLevel\": \"string\",\n      \"RoomLength\": 3823.695505123268,\n      \"RoomWidth\": 114.7539732972791\n    },\n    {\n      \"RoomKey\": \"string\",\n      \"RoomType\": \"string\",\n      \"RoomLevel\": \"string\",\n      \"RoomLength\": 2511.8893108316042,\n      \"RoomWidth\": 9414.84520816256\n    }\n  ],\n  \"UnitTypes\": [\n    {\n      \"UnitTypeKey\": \"string\",\n      \"UnitTypeType\": \"string\",\n      \"UnitTypeBedsTotal\": 6677,\n      \"UnitTypeBathsTotal\": 2950.986421916093\n    },\n    {\n      \"UnitTypeKey\": \"string\",\n      \"UnitTypeType\": \"string\",\n      \"UnitTypeBedsTotal\": 1515,\n      \"UnitTypeBathsTotal\": 1097.1487588660177\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05e85628-9db1-4268-be2b-fc7ff5c1c58d",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property('{{ListingKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0cee37b5-e738-4841-81b8-b97b488fd167",
+              "name": "Property not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Property('{{ListingKey}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$expand",
+                      "value": "Media,Rooms,UnitTypes"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mlsgrid.com/v2",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Prefixed MLS Grid listing key.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "ListingKey"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "941e7b31-f421-4f0e-9641-6f283c52ccfb",
+    "name": "MLS Grid RESO Web Lookup Property API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MLS Grid RESO Web API is a normalized, RESO Data Dictionary–compliant OData v4 Web API for replicating\nMultiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network. The\nAPI is optimized for incremental replication using `ModificationTimestamp`, supports `$select`, `$filter`,\nand `$expand` for related resources (Media, Rooms, UnitTypes), and applies a single license agreement across\nall participating MLSs.\n\nAuthentication uses long-lived OAuth 2.0 bearer tokens issued through the MLS Grid web application.\n\n\nContact Support:\n Name: MLS Grid Support\n Email: support@mlsgrid.com",
+      "type": "text/plain"
+    }
+  }
+}

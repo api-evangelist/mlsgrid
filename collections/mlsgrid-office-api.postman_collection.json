@@ -1,0 +1,279 @@
+{
+  "item": [
+    {
+      "id": "617ee5bf-e97d-47ea-a25f-37da1fdbb7f9",
+      "name": "Office",
+      "description": {
+        "content": "Brokerage offices (RESO Data Dictionary Office resource).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c03a10d-0530-48b4-b180-8783800575e6",
+          "name": "List Offices",
+          "request": {
+            "name": "List Offices",
+            "description": {
+              "content": "Replicate Office (brokerage) records filtered by `OriginatingSystemName` and `ModificationTimestamp`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "Office"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData `$filter` expression. Required pattern uses `OriginatingSystemName eq '<system>'` combined with\n`ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are\nrestricted to a limited set of searchable fields documented per resource.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return. Reduces payload size."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "$count",
+                  "value": "<boolean>",
+                  "description": "When `true`, includes `@odata.count` in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c7ad4a1-f35f-45a7-9316-3723b45b6ce3",
+              "name": "Collection of Office records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Office"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"@odata.nextLink\": \"string\",\n  \"value\": [\n    {\n      \"OfficeKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"OfficeName\": \"string\",\n      \"OfficeMlsId\": \"string\",\n      \"ModificationTimestamp\": \"1979-06-03T12:35:16.913Z\",\n      \"MlgCanView\": false\n    },\n    {\n      \"OfficeKey\": \"string\",\n      \"OriginatingSystemName\": \"string\",\n      \"OfficeName\": \"string\",\n      \"OfficeMlsId\": \"string\",\n      \"ModificationTimestamp\": \"2003-06-02T22:14:53.916Z\",\n      \"MlgCanView\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b1f8a3b-e7ec-49ea-822e-f549ecc747a6",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Office"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8b464b12-938e-4dd8-90a7-ece155b2d5da",
+              "name": "Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Office"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "ListingKey,StandardStatus,ListPrice,ModificationTimestamp"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$count",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until the client may retry.",
+                  "key": "Retry-After",
+                  "value": "65"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mlsgrid.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f040e246-7ffd-4d46-b7c6-cd0f0757188f",
+    "name": "MLS Grid RESO Web Lookup Office API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MLS Grid RESO Web API is a normalized, RESO Data Dictionary–compliant OData v4 Web API for replicating\nMultiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network. The\nAPI is optimized for incremental replication using `ModificationTimestamp`, supports `$select`, `$filter`,\nand `$expand` for related resources (Media, Rooms, UnitTypes), and applies a single license agreement across\nall participating MLSs.\n\nAuthentication uses long-lived OAuth 2.0 bearer tokens issued through the MLS Grid web application.\n\n\nContact Support:\n Name: MLS Grid Support\n Email: support@mlsgrid.com",
+      "type": "text/plain"
+    }
+  }
+}

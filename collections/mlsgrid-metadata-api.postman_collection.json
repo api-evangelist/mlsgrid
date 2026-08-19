@@ -1,0 +1,158 @@
+{
+  "item": [
+    {
+      "id": "3066a379-eee7-4115-bc55-a1403b3b4d22",
+      "name": "Metadata",
+      "description": {
+        "content": "OData service and EDMX metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c3c31d8f-686c-4426-ab9e-4cbe4027d3ed",
+          "name": "Get Service Metadata",
+          "request": {
+            "name": "Get Service Metadata",
+            "description": {
+              "content": "Returns the OData v4 EDMX metadata document describing all entity types, properties, navigation properties, and enumerations exposed by the MLS Grid Web API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "$metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec52d5a5-7cf5-43bb-ab5a-749b48a5e28f",
+              "name": "EDMX metadata document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "$metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "47405036-eab9-4ae8-a7f1-a953ed3a70b3",
+              "name": "Missing or invalid bearer token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "$metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.mlsgrid.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e16ababe-5b90-4a7f-91d8-ab36f57dbad0",
+    "name": "MLS Grid RESO Web Lookup Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MLS Grid RESO Web API is a normalized, RESO Data Dictionary–compliant OData v4 Web API for replicating\nMultiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network. The\nAPI is optimized for incremental replication using `ModificationTimestamp`, supports `$select`, `$filter`,\nand `$expand` for related resources (Media, Rooms, UnitTypes), and applies a single license agreement across\nall participating MLSs.\n\nAuthentication uses long-lived OAuth 2.0 bearer tokens issued through the MLS Grid web application.\n\n\nContact Support:\n Name: MLS Grid Support\n Email: support@mlsgrid.com",
+      "type": "text/plain"
+    }
+  }
+}

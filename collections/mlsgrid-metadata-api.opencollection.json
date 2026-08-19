@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MLS Grid RESO Web Lookup Metadata API",
+    "version": "2.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Service Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.mlsgrid.com/v2/$metadata"
+          },
+          "docs": "Returns the OData v4 EDMX metadata document describing all entity types, properties, navigation properties, and enumerations exposed by the MLS Grid Web API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
