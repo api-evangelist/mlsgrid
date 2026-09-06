@@ -1,0 +1,38 @@
+generated: '2026-07-26'
+method: searched
+source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+note: >-
+  Response payloads published verbatim in the MLS Grid v2 documentation. Saved unmodified (only
+  re-indented) because no live call can be made without a licensed token.
+examples:
+- file: mls-grid-property-example.json
+  resource: Property
+  originating_system: actris
+  fields: 138
+  source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md#example-property-data
+  description: >-
+    A single ACTRIS property record as returned by /v2/Property, showing prefixed keys (ACT...),
+    local ACT_ fields, String-List-Multi arrays, MlgCanView and expanded Media.
+- file: mls-grid-lookup-example.json
+  resource: Lookup
+  originating_system: actris
+  source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md#example-lookup-record
+  description: >-
+    A single Lookup record showing LookupKey, LookupName, LookupValue, StandardLookupValue and the
+    MlgCanView usage flag.
+requests:
+- name: Initial import
+  method: GET
+  url: https://api.mlsgrid.com/v2/Property?$filter=OriginatingSystemName%20eq%20%27actris%27%20and%20MlgCanView%20eq%20true
+- name: Incremental replication
+  method: GET
+  url: https://api.mlsgrid.com/v2/Property?$filter=OriginatingSystemName%20eq%20%27actris%27%20and%20ModificationTimestamp%20gt%202019-02-04T23:59:59.99Z&$expand=Media,Rooms,UnitTypes
+- name: Lookup replication
+  method: GET
+  url: https://api.mlsgrid.com/v2/Lookup?$filter=OriginatingSystemName eq 'actris' and MlgCanView eq true
+- name: Metadata
+  method: GET
+  url: https://api.mlsgrid.com/v2/$metadata?$filter=OriginatingSystemName%20eq%20%27actris%27
+headers:
+  Authorization: 'Bearer <access_token>'
+  Accept-Encoding: gzip

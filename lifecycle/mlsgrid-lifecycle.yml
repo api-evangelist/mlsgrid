@@ -1,0 +1,54 @@
+generated: '2026-07-26'
+method: searched
+source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+versioning:
+  scheme: uri-path
+  current: v2
+  base_url: https://api.mlsgrid.com/v2/
+  docs: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  note: >-
+    Version 2.0 is described as "the main location of the API Service for now and the future". No
+    prior-version sunset schedule and no version negotiation header are documented.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  practice: >-
+    Deprecation is handled per originating MLS through dated release notices published on
+    docs.mlsgrid.com ahead of the effective date — e.g. "NWMLS: Upcoming Changes to Fields"
+    (2025-03-05) announced legacy fields deprecated. There is no written deprecation policy page,
+    no RFC 8594 Sunset/Deprecation header support, and no stated minimum notice period.
+  evidence: https://docs.mlsgrid.com/recent-releases/nwmls-upcoming-changes-to-fields.md
+data_retention:
+  deleted_records: >-
+    Records flagged MlgCanView false must be deleted from the consumer's data store and are removed
+    from the feed entirely after 7 days.
+  source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+sla:
+  url: null
+  uptime_target: null
+  published: false
+status_page:
+  public: false
+  url: null
+  probed:
+  - {url: 'https://status.mlsgrid.com/', status: 0, note: does not resolve}
+  - {url: 'https://www.mlsgrid.com/status', status: 404}
+  member_only_equivalent: >-
+    An "MLS Import Status" screen inside the MLS Grid web application (app.mlsgrid.com) shows the
+    latest import status and freshness metric for each MLS. It is behind the member login, so there
+    is no publicly reachable status page.
+freshness:
+  import_policy: >-
+    MLS Grid checks each member MLS for changes every minute unless the MLS restricts it, and tracks
+    time-to-availability per MLS.
+  real_time: false
+  note: >-
+    "We do not support real time data access at this time. Our service provides the data through a
+    data replication process." Consumers poll on a ModificationTimestamp watermark.
+release_notes:
+  url: https://docs.mlsgrid.com/
+  artifact: changelog/mls-grid-changelog.yml
+deprecated_operations: []
+probed_on: '2026-07-26'

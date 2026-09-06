@@ -184,6 +184,48 @@ apis:
   - type: JSONLD
     url: json-ld/mlsgrid-context.jsonld
 common:
+  - type: Website
+    url: https://www.mlsgrid.com/
+  - type: SignUp
+    url: https://www.mlsgrid.com/interest-form
+  - type: LicenseAgreement
+    url: https://www.mlsgrid.com/s/MLS-GRID-Data-License-Agreement.pdf
+  - type: FAQ
+    url: https://www.mlsgrid.com/faq
+  - type: Overview
+    url: https://www.mlsgrid.com/overview
+  - type: About
+    url: https://www.mlsgrid.com/whoisthemlsgrid
+  - type: Customers
+    url: https://www.mlsgrid.com/vendors
+  - type: Blog
+    url: https://www.mlsgrid.com/news
+  - type: Certification
+    url: https://certification.reso.org/summary/T00000045
+  - type: Certification
+    url: https://www.reso.org/certificates/
+  - type: ChangeLog
+    url: https://docs.mlsgrid.com/
+  - type: ChangeLog
+    url: changelog/mlsgrid-changelog.yml
+  - type: Compliance
+    url: https://certification.reso.org/summary/T00000045
+  - type: Conformance
+    url: conformance/mlsgrid-conformance.yml
+  - type: Conventions
+    url: conventions/mlsgrid-conventions.yml
+  - type: ErrorCatalog
+    url: errors/mlsgrid-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/mlsgrid-lifecycle.yml
+  - type: DataModel
+    url: data-model/mlsgrid-data-model.yml
+  - type: Examples
+    url: examples/_index.yml
+  - type: Packages
+    url: packages/mlsgrid-packages.yml
+  - type: LLMsTxt
+    url: llms/mlsgrid-llms.txt
   - type: AgenticAccess
     url: agentic-access/mlsgrid-agentic-access.yml
   - type: DomainSecurity

@@ -1,0 +1,71 @@
+generated: '2026-07-26'
+method: searched
+source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+docs:
+- https://docs.mlsgrid.com/master.md
+- https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+format: odata-error
+envelope: '{"error":{"code":<integer>,"message":<string>}}'
+note: >-
+  MLS Grid publishes no consolidated error reference and does not use RFC 9457
+  application/problem+json. The entries below are the error conditions the public documentation
+  describes plus the responses observed on anonymous probes of api.mlsgrid.com on 2026-07-26. No
+  authenticated error surface could be exercised.
+problems:
+- status: 400
+  title: COMPRESSION REQUIRED
+  cause: The request did not include an Accept-Encoding header containing gzip.
+  remediation: Send Accept-Encoding gzip on every request; all MLS Grid responses are gzip compressed.
+  evidence: observed on anonymous probe of https://api.mlsgrid.com/v2/ without --compressed
+  observed: true
+- status: 401
+  title: Unauthorized request
+  body: '{"error":{"code":401,"message":"Unauthorized request: no authentication given"}}'
+  cause: Missing or invalid Authorization Bearer token.
+  remediation: >-
+    Send the long-lived OAuth 2 access token from the token tab of your MLS Grid data subscription
+    as 'Authorization: Bearer <access_token>'. Tokens are only issued after the Master Data License
+    Agreement is signed and the originating MLS has approved.
+  evidence: observed on anonymous probes of the service root, /Property and /$metadata
+  observed: true
+- status: 429
+  title: Rate limit exceeded / access token suspended
+  cause: >-
+    Exceeding 2 requests/second, 7,200 requests/hour, 40,000 requests/24 hours or 4 GB/hour. The
+    access token is suspended and the response describes the concerning behaviour.
+  remediation: >-
+    Reduce request rate or data volume. Permissions are reinstated automatically once usage falls
+    back within the limits. Contact support@mlsgrid.com in advance if you need to exceed them.
+  documented: true
+  source: https://docs.mlsgrid.com/master.md
+- status: null
+  title: Page size exceeded
+  cause: $top above 5000 records (or above 1000 records when $expand is used).
+  remediation: Request at most 5000 records per page, or 1000 when expanding Media/Rooms/UnitTypes.
+  documented: true
+  note: The documentation says "you will receive an error" without naming the HTTP status.
+- status: null
+  title: Too many 'or' operators
+  cause: More than 5 'or' operators in a single $filter query.
+  remediation: Use the OData 'in' operator (added in version 2.0) instead of chained 'or' clauses.
+  documented: true
+- status: null
+  title: Missing OriginatingSystemName
+  cause: A request whose $filter does not specify exactly one OriginatingSystemName value.
+  remediation: Every v2 request must filter on a single OriginatingSystemName (case sensitive, usually lowercase).
+  documented: true
+- status: null
+  title: Media access denied
+  cause: >-
+    A media download whose User-Agent header is not the OAuth 2 access token. Enforced from
+    2026-06-01.
+  remediation: Set the User-Agent header of media downloads to your OAuth 2 access token.
+  documented: true
+  source: https://docs.mlsgrid.com/releases/changes-to-mls-grid-media-access.md
+out_of_band_signals:
+- channel: email
+  detail: >-
+    Warnings about concerning token activity and suspension notices are emailed to the primary
+    contact on the vendor account, with a link to the Usage tab of the data subscription.
+- channel: mls-grid-timeline
+  detail: Messages regarding behaviour also appear on the MLS Grid timeline in the web application.

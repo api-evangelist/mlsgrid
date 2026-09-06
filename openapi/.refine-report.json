@@ -21,6 +21,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "mlsgrid-lookup-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "mlsgrid-media-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "mlsgrid-member-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "mlsgrid-metadata-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "mlsgrid-office-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "mlsgrid-openhouse-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "mlsgrid-property-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

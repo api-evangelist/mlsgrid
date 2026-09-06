@@ -1,0 +1,153 @@
+generated: '2026-07-26'
+method: searched
+source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+docs:
+- https://docs.mlsgrid.com/master.md
+- https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+style:
+  protocol: OData v4 (RESO Web API, replication profile)
+  base_url: https://api.mlsgrid.com/v2/
+  media_type: application/json
+  read_only: true
+  note: >-
+    The service is a replication surface only. MLS Grid states it does not support real-time data
+    access and has deliberately stripped the Web API down to the feature set replication needs;
+    consumers poll on a ModificationTimestamp watermark. Only read operations are exposed.
+authentication:
+  style: bearer
+  header: 'Authorization: Bearer <access_token>'
+  artifact: authentication/mls-grid-authentication.yml
+compression:
+  required: true
+  header: Accept-Encoding
+  value: gzip
+  on_missing:
+    status: 400
+    message: COMPRESSION REQUIRED
+  note: >-
+    Compression is evaluated before authentication — a request without gzip gets 400, not 401. All
+    responses are gzip compressed to shrink payload size.
+idempotency:
+  supported: false
+  note: >-
+    No idempotency key or write surface exists. Every documented operation is a GET against a
+    replication collection, so retries are naturally safe and no Idempotency-Key contract is
+    published.
+pagination:
+  style: server-driven (OData)
+  next_link_field: '@odata.nextLink'
+  page_size_param: $top
+  offset_param: $skip
+  default_page_size: 500
+  max_page_size: 5000
+  max_page_size_with_expand: 1000
+  note: >-
+    Follow @odata.nextLink until the response no longer contains one. Requesting $top above the
+    ceiling (5000 without $expand, 1000 with $expand) returns an error. Results are ordered by
+    ModificationTimestamp by default so a consumer can resume from the last timestamp received.
+filtering:
+  param: $filter
+  required_predicate: OriginatingSystemName
+  required_predicate_note: >-
+    Every request must filter on exactly one OriginatingSystemName value. Values are case sensitive
+    and usually lowercase (actris, mred, nwmls, ...).
+  searchable_fields:
+    Property: [OriginatingSystemName, ModificationTimestamp, StandardStatus, PropertyType, ListingId, MlgCanView, ListOfficeMlsId]
+    Member: [OriginatingSystemName, ModificationTimestamp, MemberMlsId, MlgCanView]
+    Office: [OriginatingSystemName, ModificationTimestamp, OfficeMlsId, MlgCanView]
+    OpenHouse: [OriginatingSystemName, ModificationTimestamp, OpenHouseKey, ListingId, MlgCanView, OpenHouseDate]
+    Lookup: [OriginatingSystemName, ModificationTimestamp, LookupName, MlgCanView]
+  operator_limits:
+    max_or_operators: 5
+    preferred: in operator (new in version 2.0)
+field_selection:
+  select_param: $select
+  select_supported_on_expand: false
+  expand_param: $expand
+  expandable:
+    Property: [Media, Rooms, UnitTypes]
+    Member: [Media]
+    Office: [Media]
+  note: >-
+    $select and $orderby are not supported on $expand-ed resources. Using $expand drops the maximum
+    records per request from 5000 to 1000.
+identifiers:
+  prefixed_keys: true
+  note: >-
+    Every Key and MlsId field (and every reference to one) is prefixed with a three-character MLS
+    code to keep identifiers unique across pooled MLSs — e.g. ListingKey 123456 from ACTRIS is
+    ACT123456. The prefix must be included when querying MLS Grid and should be stripped before
+    external display. Non-alphanumeric characters are stripped from key values because they break
+    OData.
+  local_field_prefix: >-
+    MLS-specific (non-Data-Dictionary) fields are prefixed with a four-character code plus an
+    underscore, e.g. ACT_ActiveOpenHouseCount, MRD_, NWM_.
+  grid_field_prefix: >-
+    Any field prefixed "Mlg" is specific to MLS Grid rather than the RESO Data Dictionary
+    (MlgCanView, MlgCanUse).
+timestamps:
+  timezone: UTC
+  note: >-
+    All date fields converted to a RESO Data Dictionary field are represented in UTC regardless of
+    source MLS. Local (unconverted) date fields keep their original representation.
+  watermark_field: ModificationTimestamp
+  source_watermark_field: OriginatingSystemModificationTimestamp
+signal_fields:
+- field: ModificationTimestamp
+  scope: all resources
+  action: Record data changed — replace the local copy.
+- field: MlgCanView
+  scope: all resources
+  action: When false the record is no longer valid for your feed type and must be deleted locally.
+- field: PhotosChangeTimestamp
+  scope: Property, Member, Office
+  action: Media records changed — replace local media records.
+- field: MediaModificationTimestamp
+  scope: Media sub-documents
+  action: The image file changed — re-download it from MediaURL.
+licensing_in_payload:
+  MlgCanView:
+    type: boolean
+    meaning: Delete/retention signal. False means remove the record from your data store.
+    retention: Records marked MlgCanView false are removed from the feed entirely after 7 days.
+  MlgCanUse:
+    type: array of strings
+    values: [IDX, VOW, BO, PT]
+    meaning: >-
+      Which use cases from the MLS Grid Master Data License Agreement the record qualifies for —
+      IDX (public consumer display), VOW (authenticated consumer display), BO (back office),
+      PT (broker only / participant data access).
+media:
+  url_field: MediaURL
+  hotlinking_allowed: false
+  requirement: >-
+    Media URLs may be used only to download a local copy; they must never be used directly on a
+    website or in an application. Downloads must send a User-Agent header equal to the OAuth 2
+    access token (enforced from 2026-06-01).
+  immutability: >-
+    Media never updates and retains its original URL. Any change issues a new Media URL, so the same
+    media never needs to be downloaded twice.
+versioning:
+  scheme: uri-path
+  current: v2
+  artifact: lifecycle/mls-grid-lifecycle.yml
+errors:
+  envelope: 'OData error object: {"error":{"code":<int>,"message":<string>}}'
+  artifact: errors/mls-grid-problem-types.yml
+rate_limit_signaling:
+  status: 429
+  headers_documented: false
+  artifact: rate-limits/mls-grid-rate-limits.yml
+  note: >-
+    No RateLimit-* or Retry-After headers are documented. Exceeding limits suspends the access token
+    and sends email to the vendor account primary contact; permissions are automatically reinstated
+    once usage falls back within limits.
+request_tracing:
+  request_id_header: null
+  documented: false
+metadata:
+  endpoint: https://api.mlsgrid.com/v2/$metadata
+  note: >-
+    The OData $metadata document is the machine-readable contract, but it requires the
+    OriginatingSystemName filter and a bearer token — it returned HTTP 401 anonymously on
+    2026-07-26.

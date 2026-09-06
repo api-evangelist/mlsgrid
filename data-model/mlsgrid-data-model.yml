@@ -1,0 +1,148 @@
+generated: '2026-07-26'
+method: searched
+source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+note: >-
+  Derived from the public v2 documentation rather than from a machine-readable contract — the OData
+  $metadata document that defines these entity types returns HTTP 401 anonymously. Only entity sets,
+  keys, relationships and fields the documentation names explicitly are recorded here.
+dictionary: RESO Data Dictionary 2.0
+key_convention:
+  prefixed: true
+  detail: >-
+    Every Key/MlsId field and every reference to one carries a three-character MLS prefix
+    (ACT, MRD, NWM, ...) so identifiers stay unique across pooled MLSs. Non-alphanumeric characters
+    are stripped from key values.
+entities:
+- name: Property
+  kind: entity-set
+  endpoint: /v2/Property
+  key: ListingKey
+  alternate_keys: [ListingId]
+  description: All listings for sale or lease, normalized to the RESO Data Dictionary.
+  searchable: [OriginatingSystemName, ModificationTimestamp, StandardStatus, PropertyType, ListingId, MlgCanView, ListOfficeMlsId]
+- name: Member
+  kind: entity-set
+  endpoint: /v2/Member
+  key: null
+  key_note: The documentation names MemberMlsId as the searchable prefixed identifier; the primary key field is defined in the (authenticated) $metadata document.
+  alternate_keys: [MemberMlsId]
+  description: Real estate agent records.
+  searchable: [OriginatingSystemName, ModificationTimestamp, MemberMlsId, MlgCanView]
+- name: Office
+  kind: entity-set
+  endpoint: /v2/Office
+  key: null
+  key_note: The documentation names OfficeMlsId as the searchable prefixed identifier; the primary key field is defined in the (authenticated) $metadata document.
+  alternate_keys: [OfficeMlsId]
+  description: Brokerage office records.
+  searchable: [OriginatingSystemName, ModificationTimestamp, OfficeMlsId, MlgCanView]
+- name: OpenHouse
+  kind: entity-set
+  endpoint: /v2/OpenHouse
+  key: OpenHouseKey
+  description: Open house events tied to a Property.
+  searchable: [OriginatingSystemName, ModificationTimestamp, OpenHouseKey, ListingId, MlgCanView, OpenHouseDate]
+- name: Lookup
+  kind: entity-set
+  endpoint: /v2/Lookup
+  key: LookupKey
+  description: >-
+    Per-MLS enumeration values. Each record pairs LookupName + LookupValue with a
+    StandardLookupValue and an MlgCanView flag indicating whether the MLS still uses it.
+  searchable: [OriginatingSystemName, ModificationTimestamp, LookupName, MlgCanView]
+- name: Media
+  kind: expanded-resource
+  key: MediaKey
+  description: >-
+    Photos (and in limited cases documents) associated with a Property, Member or Office. Delivered
+    as an array sub-document via $expand; standalone where the originating MLS permits.
+- name: Rooms
+  kind: expanded-resource
+  key: RoomKey
+  odata_type: Collection(org.reso.metadata.PropertyRooms)
+  description: Room records associated with a Property.
+- name: UnitTypes
+  kind: expanded-resource
+  key: UnitTypeKey
+  odata_type: Collection(org.reso.metadata.PropertyUnitTypes)
+  description: Unit-type records associated with a Property (multi-unit income properties).
+- name: BodyOfWater
+  kind: expanded-resource
+  description: >-
+    Expandable water-body resource on Property, announced 2025-12-08 for Northstar MLS
+    ($expand=BodyOfWater).
+  availability: per-MLS
+- name: UnitRooms
+  kind: resource
+  description: Standalone resource announced 2025-12-08 for Northstar MLS.
+  availability: per-MLS
+relationships:
+- from: Property
+  to: Media
+  type: has_many
+  via: $expand=Media
+- from: Property
+  to: Rooms
+  type: has_many
+  via: $expand=Rooms
+- from: Property
+  to: UnitTypes
+  type: has_many
+  via: $expand=UnitTypes
+- from: Member
+  to: Media
+  type: has_many
+  via: $expand=Media
+- from: Office
+  to: Media
+  type: has_many
+  via: $expand=Media
+- from: OpenHouse
+  to: Property
+  type: belongs_to
+  via: ListingId
+- from: Property
+  to: Office
+  type: belongs_to
+  via: ListOfficeMlsId -> Office.OfficeMlsId
+- from: Property
+  to: Member
+  type: belongs_to
+  via: ListAgentMlsId -> Member.MemberMlsId
+- from: Member
+  to: Office
+  type: belongs_to
+  via: OfficeMlsId -> Office.OfficeMlsId
+- from: Property
+  to: Lookup
+  type: references
+  via: 'lookup-bound fields (StandardStatus, PropertyType, BodyType, ...) -> Lookup.LookupName'
+cross_cutting_fields:
+- field: OriginatingSystemName
+  on: all
+  role: source-MLS discriminator; required in every $filter
+- field: ModificationTimestamp
+  on: all
+  role: MLS Grid modification watermark (UTC); drives replication
+- field: OriginatingSystemModificationTimestamp
+  on: all
+  role: source MLS modification time
+- field: MlgCanView
+  on: all
+  role: boolean licence/delete flag; false means remove locally, and the record leaves the feed after 7 days
+- field: MlgCanUse
+  on: all
+  role: array of permitted use cases (IDX, VOW, BO, PT)
+- field: PhotosChangeTimestamp
+  on: [Property, Member, Office]
+  role: signals that media records changed
+- field: MediaModificationTimestamp
+  on: Media
+  role: signals that an individual image file changed and must be re-downloaded
+enumerations:
+  StandardStatus: [Active, ActiveUnderContract, Canceled, Closed, ComingSoon, Delete, Expired, Hold, Incomplete, Pending, Withdrawn]
+  PropertyType: [BusinessOpportunity, CommercialLease, CommercialSale, Farm, Land, ManufacturedInPark, Residential, ResidentialIncome, ResidentialLease]
+  MlgCanUse: [IDX, VOW, BO, PT]
+examples:
+- examples/mls-grid-property-example.json
+- examples/mls-grid-lookup-example.json

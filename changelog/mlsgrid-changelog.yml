@@ -1,0 +1,236 @@
+generated: '2026-07-26'
+method: searched
+source: https://docs.mlsgrid.com/llms.txt
+docs:
+- https://docs.mlsgrid.com/
+- https://www.mlsgrid.com/news
+scheme:
+  api_version: uri-path (v2)
+  api_version_current: '2.0'
+  release_notes: >-
+    MLS Grid does not version the API on a release train. Change is announced per originating MLS as
+    dated "Release" and "Recent Release" notices in the documentation site, each naming the MLS
+    affected, the date of change, the resources affected and the type of change (field name changes,
+    fields added, lookup name changes, legacy fields deprecated, new expandable resources, new MLS
+    sources, IDX/VOW rules changes).
+  advance_notice: >-
+    Notices are published ahead of the effective date and are addressed to the technical contact on
+    each data subscription; several also arrive by email to the vendor account primary contact.
+  breaking_change_pattern: >-
+    Field renames and lookup renames are the common breaking shape. Changes normally apply only to
+    new or modified records after the release, not to records already replicated — except an MLS
+    system migration (MARIS, 2025-05-12), which required a full re-import.
+window: Entries published on docs.mlsgrid.com as of 2026-07-26 (36 notices, 2025-02-18 to 2026-06-05).
+entries:
+- date: '2026-06-05'
+  title: PACMLS Now Available Through MLS Grid
+  mls: PACMLS
+  type: new-mls-source
+  url: https://docs.mlsgrid.com/releases/pacmls-now-available-through-mls-grid.md
+- date: '2026-06-01'
+  title: Changes to MLS Grid Media Access
+  mls: all
+  type: breaking
+  highlight: >-
+    All media downloads from a MediaURL must send a User-Agent header whose value is the OAuth 2
+    access token. From 2026-06-01 any other User-Agent may be denied media access.
+  url: https://docs.mlsgrid.com/releases/changes-to-mls-grid-media-access.md
+- date: '2026-05-27'
+  title: 'SCKansas MLS: Changes to MLS Grid IDX and VOW Rules'
+  mls: SCKansas MLS
+  type: rules-change
+  url: https://docs.mlsgrid.com/releases/sckansas-mls-changes-to-mls-grid-idx-and-vow-rules.md
+- date: '2026-04-29'
+  title: 'Realtracs MLS: Changes to MLS Grid IDX and VOW Rules'
+  mls: Realtracs MLS
+  type: rules-change
+  url: https://docs.mlsgrid.com/releases/realtracs-mls-changes-to-mls-grid-idx-and-vow-rules.md
+- date: '2025-12-08'
+  title: 'Northstar MLS: Upcoming Addition of Expandable Resource and Standalone Resource'
+  mls: Northstar MLS
+  type: additions
+  highlight: New expandable BodyOfWater resource and new UnitRooms resource on Property.
+  url: https://docs.mlsgrid.com/recent-releases/northstar-mls-upcoming-addition-of-expandable-resource-and-standalone-resource.md
+- date: '2025-11-03'
+  title: IRES Multiple Listing Service Now Available Through MLS Grid
+  mls: IRES MLS
+  type: new-mls-source
+  url: https://docs.mlsgrid.com/recent-releases/ires-multiple-listing-service-now-available-through-mls-grid.md
+- date: '2025-10-31'
+  title: East Central Iowa Multiple Listing Service Now Available Through MLS Grid
+  mls: East Central Iowa MLS Inc.
+  type: new-mls-source
+  url: https://docs.mlsgrid.com/recent-releases/east-central-iowa-multiple-listing-service-now-available-through-mls-grid.md
+- date: '2025-10-29'
+  title: 'MRED: IDX and VOW Rules Changes'
+  mls: MRED
+  type: rules-change
+  url: https://docs.mlsgrid.com/recent-releases/mred-idx-and-vow-rules-changes.md
+- date: '2025-06-11'
+  title: 'Heartland MLS: Adding Coming Soon listings to IDX and VOW'
+  mls: Heartland MLS (HMLS)
+  type: additions
+  url: https://docs.mlsgrid.com/recent-releases/heartland-mls-adding-coming-soon-listings-to-idx-and-vow.md
+- date: '2025-05-12'
+  title: 'MARIS MLS: Migration to new MLS system and new OriginatingSystemName'
+  mls: MARIS MLS
+  type: breaking
+  highlight: >-
+    New OriginatingSystemName (maris2). Data consumers had to re-import all MARIS MLS data.
+  url: https://docs.mlsgrid.com/recent-releases/maris-mls-migration-to-new-mls-system-and-new-originatingsystemname.md
+- date: '2025-05-01'
+  title: 'REcolorado: Upcoming Changes to Fields and Lookups'
+  mls: REcolorado
+  type: breaking
+  highlight: Field name changes.
+  url: https://docs.mlsgrid.com/recent-releases/recolorado-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-04-30'
+  title: 'RMLS Alliance: Upcoming Changes to Fields and Lookups'
+  mls: RMLS Alliance
+  type: breaking
+  highlight: Field name changes, lookup name changes.
+  url: https://docs.mlsgrid.com/recent-releases/rmls-alliance-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-04-28'
+  title: 'RANW MLS: Upcoming Changes to Fields and Lookups'
+  mls: RANW MLS
+  type: breaking
+  highlight: Field name changes.
+  url: https://docs.mlsgrid.com/recent-releases/ranw-mls-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-04-28'
+  title: 'Spokane Realtors MLS: Upcoming Changes to Fields and Lookups'
+  mls: Spokane Realtors MLS
+  type: breaking
+  highlight: Field name changes, lookup name changes.
+  url: https://docs.mlsgrid.com/recent-releases/spokane-realtors-mls-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-04-25'
+  title: 'South Central Kansas MLS: Upcoming Changes to Fields and Lookups'
+  mls: South Central Kansas MLS
+  type: breaking
+  highlight: Field name changes, lookup name changes.
+  url: https://docs.mlsgrid.com/recent-releases/south-central-kansas-mls-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-04-24'
+  title: 'NoCoast MLS: Upcoming Changes to Fields and Lookups'
+  mls: NoCoast MLS
+  type: breaking
+  highlight: Field name changes, lookup name changes.
+  url: https://docs.mlsgrid.com/recent-releases/nocoast-mls-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-04-23'
+  title: 'NEIRBR MLS: Upcoming Changes to Fields and Lookups'
+  mls: NEIRBR MLS
+  type: breaking
+  highlight: Field name changes, lookup name changes.
+  url: https://docs.mlsgrid.com/recent-releases/neirbr-mls-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-04-22'
+  title: 'LBOR MLS: Upcoming Changes to Fields and Lookups'
+  mls: LBOR MLS
+  type: breaking
+  highlight: Field name changes, lookup name changes.
+  url: https://docs.mlsgrid.com/recent-releases/lbor-mls-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-04-17'
+  title: 'Flint Hills MLS: Upcoming Changes to Fields'
+  mls: Flint Hills MLS
+  type: additions
+  highlight: Fields added.
+  url: https://docs.mlsgrid.com/recent-releases/flint-hills-mls-upcoming-changes-to-fields.md
+- date: '2025-04-11'
+  title: 'Southern Missouri Regional (SOMO) MLS: Upcoming Changes to Fields'
+  mls: SOMO MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/southern-missouri-regional-somo-mls-upcoming-changes-to-fields.md
+- date: '2025-04-11'
+  title: 'Prescott Area Association of Realtors (PAAR) MLS: Upcoming Changes to Fields'
+  mls: PAAR MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/prescott-area-association-of-realtors-paar-mls-upcoming-changes-to-fields.md
+- date: '2025-04-10'
+  title: 'Pike Wayne Association of Realtors: Upcoming Changes to Fields'
+  mls: Pike/Wayne Association of REALTORS
+  type: breaking
+  highlight: Field name changes.
+  url: https://docs.mlsgrid.com/recent-releases/pike-wayne-association-of-realtors-upcoming-changes-to-fields.md
+- date: '2025-04-10'
+  title: 'Greater Scranton MLS: Upcoming Changes to Fields'
+  mls: Greater Scranton MLS
+  type: breaking
+  highlight: Field name changes.
+  url: https://docs.mlsgrid.com/recent-releases/greater-scranton-mls-upcoming-changes-to-fields.md
+- date: '2025-04-09'
+  title: 'MRED MLS: Upcoming Changes to Fields'
+  mls: MRED MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/mred-mls-upcoming-changes-to-fields-april-9-2025.md
+- date: '2025-04-08'
+  title: 'Sunflower MLS: Upcoming Changes to Fields'
+  mls: Sunflower MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/sunflower-mls-upcoming-changes-to-fields.md
+- date: '2025-04-07'
+  title: 'Southern New Mexico MLS: Upcoming Changes to Fields'
+  mls: Southern New Mexico MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/southern-new-mexico-mls-upcoming-changes-to-fields.md
+- date: '2025-04-04'
+  title: 'Spartanburg MLS: Upcoming Changes to Fields'
+  mls: Spartanburg MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/spartanburg-mls-upcoming-changes-to-fields.md
+- date: '2025-04-03'
+  title: 'RRAR MLS: Upcoming Changes to Fields'
+  mls: RRAR MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/rrar-mls-upcoming-changes-to-fields.md
+- date: '2025-04-02'
+  title: 'MRED MLS: Upcoming Changes to Fields'
+  mls: MRED MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/mred-mls-upcoming-changes-to-fields-april-2-2025.md
+- date: '2025-04-01'
+  title: 'NIRA (Northwest Indiana REALTOR Association) MLS: Upcoming Changes to Fields'
+  mls: NIRA MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/nira-northwest-indiana-realtor-association-mls-upcoming-changes-to-fields.md
+- date: '2025-03-31'
+  title: 'Heartland MLS: Upcoming Changes to Fields'
+  mls: Heartland MLS
+  type: breaking
+  highlight: Field name changes, fields added.
+  url: https://docs.mlsgrid.com/recent-releases/heartland-mls-upcoming-changes-to-fields.md
+- date: '2025-03-11'
+  title: 'Unlock MLS: Upcoming Changes to Fields and Lookups'
+  mls: Unlock MLS
+  type: breaking
+  highlight: Field name changes, lookup name changes.
+  url: https://docs.mlsgrid.com/recent-releases/unlock-mls-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-03-11'
+  title: 'OneKey MLS: Upcoming Changes to Fields and Lookups'
+  mls: OneKey MLS
+  type: breaking
+  highlight: Field name changes, lookup name changes.
+  url: https://docs.mlsgrid.com/recent-releases/onekey-mls-upcoming-changes-to-fields-and-lookups.md
+- date: '2025-03-06'
+  title: 'LBOR MLS: Status and Field Addition'
+  mls: LBOR MLS
+  type: additions
+  highlight: Status and field added.
+  url: https://docs.mlsgrid.com/recent-releases/lbor-mls-status-and-field-addition.md
+- date: '2025-03-05'
+  title: 'NWMLS: Upcoming Changes to Fields'
+  mls: NWMLS
+  type: breaking
+  highlight: Field name changes, legacy fields deprecated (evening of March 5, 2025).
+  url: https://docs.mlsgrid.com/recent-releases/nwmls-upcoming-changes-to-fields.md
+- date: '2025-02-18'
+  title: 'Realtracs: Upcoming Changes to Fields and Lookups'
+  mls: Realtracs MLS
+  type: breaking
+  highlight: Field name changes, lookup name changes.
+  url: https://docs.mlsgrid.com/recent-releases/realtracs-upcoming-changes-to-fields-and-lookups.md

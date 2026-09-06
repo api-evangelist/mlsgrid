@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: MLS Grid RESO Web Lookup Property API
   description: 'The MLS Grid RESO Web API is a normalized, RESO Data Dictionary–compliant OData v4 Web API for replicating
@@ -85,48 +85,31 @@ paths:
         '404':
           description: Property not found.
 components:
-  parameters:
-    Select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return. Reduces payload size.
-      schema:
-        type: string
-      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
-    Count:
-      name: $count
-      in: query
-      description: When `true`, includes `@odata.count` in the response.
-      schema:
-        type: boolean
-    Filter:
-      name: $filter
-      in: query
-      description: 'OData `$filter` expression. Required pattern uses `OriginatingSystemName eq ''<system>''` combined with
-
-        `ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are
-
-        restricted to a limited set of searchable fields documented per resource.
-
-        '
-      schema:
-        type: string
-      example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
-    Top:
-      name: $top
-      in: query
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        maximum: 1000
-    Expand:
-      name: $expand
-      in: query
-      description: Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`.
-      schema:
-        type: string
-      example: Media,Rooms,UnitTypes
   schemas:
+    PropertyCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.nextLink':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+    Room:
+      type: object
+      properties:
+        RoomKey:
+          type: string
+        RoomType:
+          type: string
+        RoomLevel:
+          type: string
+        RoomLength:
+          type: number
+        RoomWidth:
+          type: number
     Property:
       type: object
       description: RESO Data Dictionary Property resource. Only fields present in the originating MLS are populated.
@@ -193,6 +176,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UnitType'
+    UnitType:
+      type: object
+      properties:
+        UnitTypeKey:
+          type: string
+        UnitTypeType:
+          type: string
+        UnitTypeBedsTotal:
+          type: integer
+        UnitTypeBathsTotal:
+          type: number
     Media:
       type: object
       properties:
@@ -213,44 +207,7 @@ components:
         MediaModificationTimestamp:
           type: string
           format: date-time
-    UnitType:
-      type: object
-      properties:
-        UnitTypeKey:
-          type: string
-        UnitTypeType:
-          type: string
-        UnitTypeBedsTotal:
-          type: integer
-        UnitTypeBathsTotal:
-          type: number
-    Room:
-      type: object
-      properties:
-        RoomKey:
-          type: string
-        RoomType:
-          type: string
-        RoomLevel:
-          type: string
-        RoomLength:
-          type: number
-        RoomWidth:
-          type: number
-    PropertyCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.nextLink':
-          type: string
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
   responses:
-    Unauthorized:
-      description: Missing or invalid bearer token.
     RateLimited:
       description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
       headers:
@@ -258,6 +215,49 @@ components:
           schema:
             type: integer
           description: Seconds until the client may retry.
+    Unauthorized:
+      description: Missing or invalid bearer token.
+  parameters:
+    Count:
+      name: $count
+      in: query
+      description: When `true`, includes `@odata.count` in the response.
+      schema:
+        type: boolean
+    Expand:
+      name: $expand
+      in: query
+      description: Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`.
+      schema:
+        type: string
+      example: Media,Rooms,UnitTypes
+    Filter:
+      name: $filter
+      in: query
+      description: 'OData `$filter` expression. Required pattern uses `OriginatingSystemName eq ''<system>''` combined with
+
+        `ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are
+
+        restricted to a limited set of searchable fields documented per resource.
+
+        '
+      schema:
+        type: string
+      example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return. Reduces payload size.
+      schema:
+        type: string
+      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
+    Top:
+      name: $top
+      in: query
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        maximum: 1000
   securitySchemes:
     bearerAuth:
       type: http

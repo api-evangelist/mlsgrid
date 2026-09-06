@@ -1,0 +1,81 @@
+generated: '2026-07-26'
+method: searched
+source: https://certification.reso.org/api/v1/certification_reports/summary/T00000045
+docs:
+- https://www.reso.org/certificates/
+- https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+note: >-
+  MLS Grid's conformance posture is third-party verifiable in the RESO certification directory, but
+  the OData $metadata document a RESO Web API is certified against returns HTTP 401 anonymously, so
+  none of the assertions below could be confirmed against a machine-readable contract.
+standards:
+- id: reso-data-dictionary
+  version: '2.0'
+  conforms: true
+  evidence: >-
+    RESO certification directory, organization MLS Grid, UOI T00000045, certification type
+    data_dictionary, status certified (report generated 2024-04-05, status updated 2025-03-18).
+  source: https://certification.reso.org/summary/T00000045
+- id: reso-web-api-server-core
+  version: 2.0.0
+  conforms: true
+  evidence: >-
+    RESO certification directory, organization MLS Grid, UOI T00000045, certification type
+    web_api_server_core, status certified (report generated 2021-12-02, status updated 2025-03-18).
+  source: https://certification.reso.org/summary/T00000045
+- id: odata-v4
+  conforms: partial
+  evidence: >-
+    The service is an OData v4 surface ($filter, $expand, $select, $top, $skip, @odata.nextLink,
+    @odata.context, $metadata) but deliberately restricted for replication: one mandatory
+    OriginatingSystemName predicate, a fixed list of searchable fields per resource, no $orderby or
+    $select on expanded resources, a 5-'or'-operator ceiling and page-size caps.
+  source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+- id: oauth2-bearer
+  conforms: partial
+  evidence: >-
+    "A simplified Oauth 2 authentication schema with long term tokens" — Authorization: Bearer
+    <access_token>. There is no token endpoint, no authorization-code flow, no refresh flow and no
+    scope surface; tokens are minted in the web application after licence approval.
+  source: https://docs.mlsgrid.com/master.md
+- id: openid-connect
+  conforms: false
+  evidence: >-
+    No discovery document. api.mlsgrid.com/.well-known/openid-configuration returns 401,
+    www.mlsgrid.com/.well-known/openid-configuration returns 404, and the app.mlsgrid.com
+    well-known paths return the web application's HTML shell.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use the OData error object ({"error":{"code":...,"message":...}}), not
+    application/problem+json.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support is documented; deprecation is announced in dated release notices.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on www.mlsgrid.com and docs.mlsgrid.com, and 401 on api.mlsgrid.com.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No event, streaming or webhook surface exists. MLS Grid states it does not support real-time
+    data access; consumers replicate by polling a ModificationTimestamp watermark.
+- id: rfc9116-well-known-api-catalog
+  conforms: false
+  evidence: /.well-known/api-catalog returns 404 on www.mlsgrid.com and 401 on api.mlsgrid.com.
+compliance_program:
+  published: true
+  kind: industry-certification
+  detail: >-
+    RESO certification (Data Dictionary 2.0 and Web API Server Core 2.0.0) listed under Technology
+    Company in the RESO directory of certified organizations, UOI T00000045, directory date
+    2023-04-06, status "Certified Current".
+  url: https://certification.reso.org/summary/T00000045
+  security_certifications: []
+  security_certifications_note: >-
+    No SOC 2, ISO 27001, PCI DSS, HIPAA or FedRAMP posture is published. There is no trust centre
+    (trust.mlsgrid.com does not resolve; /security returns 404).
+  vendor_compliance: >-
+    MLS Grid runs quarterly compliance audits of the websites where licensed listings are displayed,
+    on behalf of the participating MLSs.
+probed_on: '2026-07-26'

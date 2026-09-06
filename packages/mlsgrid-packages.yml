@@ -1,0 +1,27 @@
+generated: '2026-07-26'
+method: searched
+source: registry searches (npm, PyPI, GitHub) 2026-07-26
+official_sdks: 0
+note: >-
+  MLS Grid publishes no first-party client libraries. The GitHub organization github.com/mlsgrid
+  exists (created 2019-10-29) but has zero public repositories, and no package named for MLS Grid is
+  published by the company on npm or PyPI. The one package found is a third-party community library.
+packages:
+- language: python
+  registry: pypi
+  name: mlsgrid-api
+  version: 0.0.14
+  url: https://pypi.org/project/mlsgrid-api/
+  source: https://github.com/captivus/mlsgrid_api
+  install: pip install mlsgrid-api
+  license: GPL-3.0-only
+  official: false
+  maintainer: captivus (community)
+  description: Community Python library for the MLS Grid API. Not published or endorsed by MLS Grid.
+registries_probed:
+- {registry: npm, query: mlsgrid, results: 0}
+- {registry: npm, query: 'mls grid reso', results: 0, note: no MLS Grid related package}
+- {registry: pypi, name: mlsgrid, status: 404}
+- {registry: pypi, name: mls-grid, status: 404}
+- {registry: pypi, name: mlsgrid-api, status: 200, official: false}
+- {registry: github, org: mlsgrid, public_repos: 0}
