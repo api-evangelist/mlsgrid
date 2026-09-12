@@ -1,16 +1,16 @@
 ---
 kin_checks:
   slug: mlsgrid
-  schema_version: 0.18.3
-  scored_at: '2026-09-06'
-  run_ts: 2026-09-06T011047
+  schema_version: 0.21.0
+  scored_at: '2026-09-12'
+  run_ts: 2026-09-12T080032
   note: Actionable checks only (missed + partial). earned/na are every other check
-    in rubric/scoring-0.18.3.yml; counts below let you verify that.
+    in rubric/scoring-0.21.0.yml; counts below let you verify that.
   counts:
-    total: 132
-    earned: 47
-    partial: 6
-    missed: 50
+    total: 136
+    earned: 53
+    partial: 9
+    missed: 45
     na: 29
   checks:
   - id: tags_present
@@ -18,8 +18,6 @@ kin_checks:
   - id: multiple_apis
     status: missed
   - id: well_known_published
-    status: missed
-  - id: llms_txt_published
     status: missed
   - id: apis_json_self_hosted
     status: missed
@@ -29,8 +27,6 @@ kin_checks:
   - id: openapi_3_1
     status: missed
     detail: 0 of 7 openapi documents pass
-  - id: examples_present
-    status: missed
   - id: webhooks_or_callbacks
     status: missed
     detail: 0 of 7 openapi documents pass
@@ -40,11 +36,7 @@ kin_checks:
     status: missed
   - id: lifecycle_documented
     status: missed
-  - id: conformance_declared
-    status: missed
   - id: overlay_published
-    status: missed
-  - id: change_log_present
     status: missed
   - id: status_page_present
     status: missed
@@ -55,8 +47,6 @@ kin_checks:
   - id: webhooks_advertised
     status: missed
   - id: roadmap_present
-    status: missed
-  - id: examples_published
     status: missed
   - id: api_reference_present
     status: missed
@@ -74,16 +64,13 @@ kin_checks:
     status: missed
   - id: agent_skill_present
     status: missed
-  - id: blog_present
-    status: missed
   - id: plans_multiple
     status: missed
   - id: pricing_link
     status: missed
-  - id: sign_up_present
-    status: missed
   - id: compliance_published
     status: missed
+    detail: pointer liveness 0.0
   - id: trust_center
     status: missed
   - id: reg_oauth_scopes
@@ -92,11 +79,16 @@ kin_checks:
     status: missed
   - id: reg_compliance_published
     status: missed
+    detail: pointer liveness 0.0
+  - id: upsert_outcome_discriminator
+    status: missed
+  - id: upsert_alternate_key
+    status: missed
+  - id: upsert_named
+    status: missed
+  - id: upsert_declared_conflict
+    status: missed
   - id: mcp_server
-    status: missed
-  - id: error_semantics
-    status: missed
-  - id: openapi_examples
     status: missed
   - id: event_surface_described
     status: missed
@@ -116,6 +108,9 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
+  - id: examples_present
+    status: partial
+    earned: 1.0
   - id: components_reuse
     status: partial
     earned: 0.43
@@ -137,3 +132,11 @@ kin_checks:
     status: partial
     earned: 3.5
     detail: 'grade: bearer'
+  - id: error_semantics
+    status: partial
+    earned: 4.0
+    detail: 'grade: documented'
+  - id: openapi_examples
+    status: partial
+    earned: 1.75
+    detail: 'grade: documented'
