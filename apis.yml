@@ -39,6 +39,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mlsgrid-lookup-api-openapi.yml
+  - type: Overlay
+    url: overlays/mlsgrid-lookup-api-overlay.yaml
   - type: Documentation
     url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
   - type: Documentation
@@ -61,6 +63,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mlsgrid-media-api-openapi.yml
+  - type: Overlay
+    url: overlays/mlsgrid-media-api-overlay.yaml
   - type: Documentation
     url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
   - type: Documentation
@@ -83,6 +87,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mlsgrid-member-api-openapi.yml
+  - type: Overlay
+    url: overlays/mlsgrid-member-api-overlay.yaml
   - type: Documentation
     url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
   - type: Documentation
@@ -105,6 +111,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mlsgrid-metadata-api-openapi.yml
+  - type: Overlay
+    url: overlays/mlsgrid-metadata-api-overlay.yaml
   - type: Documentation
     url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
   - type: Documentation
@@ -127,6 +135,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mlsgrid-office-api-openapi.yml
+  - type: Overlay
+    url: overlays/mlsgrid-office-api-overlay.yaml
   - type: Documentation
     url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
   - type: Documentation
@@ -149,6 +159,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mlsgrid-openhouse-api-openapi.yml
+  - type: Overlay
+    url: overlays/mlsgrid-openhouse-api-overlay.yaml
   - type: Documentation
     url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
   - type: Documentation
@@ -171,6 +183,8 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/mlsgrid-property-api-openapi.yml
+  - type: Overlay
+    url: overlays/mlsgrid-property-api-overlay.yaml
   - type: Documentation
     url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
   - type: Documentation
@@ -244,13 +258,18 @@ common:
   - url: https://docs.mlsgrid.com/sitemap.md
     name: Documentation Sitemap
     type: Documentation
-  - url: https://www.mlsgrid.com
+  - url: https://www.mlsgrid.com/resources
     name: Resources and Guides
     type: Resources
-  - url: https://www.mlsgrid.com
+  - url: https://app.mlsgrid.com/privacypolicy
     type: PrivacyPolicy
-  - url: https://www.mlsgrid.com
+    note: 'Canonical privacy policy URL, linked from the www.mlsgrid.com footer. HTTP 200 on 2026-09-17; the page is a client-rendered route of the Angular member application, so the raw response is the app shell.'
+  - url: https://app.mlsgrid.com/termsofuse
     type: TermsOfService
+    note: 'Canonical terms of use URL, linked from the www.mlsgrid.com footer. HTTP 200 on 2026-09-17; client-rendered route of the Angular member application.'
+  - url: https://www.mlsgrid.com/contact-us
+    type: Support
+    name: Contact MLS Grid
   - url: mailto:support@mlsgrid.com
     type: Support
   - url: mailto:info@mlsgrid.com
@@ -273,6 +292,23 @@ common:
     type: Vocabulary
   - url: rules/mlsgrid-rules.yml
     type: SpectralRuleset
+  - url: mcp/mlsgrid-mcp.yml
+    type: X-MCPServerCandidate
+    note: 'Candidate only. MLS Grid publishes no MCP server; the manifest is a tool list derived from the eight operations in this repo''s OpenAPIs and self-describes as status: candidate. Not wired as MCPServer, which would credit MLS Grid with a server that does not exist.'
+  - url: skills/_index.yml
+    type: AgentSkill
+  - url: well-known/mlsgrid-well-known.yml
+    type: X-WellKnownProbe
+    note: 'Recorded ABSENCE, not a presence. Every /.well-known/ path 404s, 401s or returns the app shell across all six MLS Grid hosts (probed 2026-09-17), so no WellKnown or SecurityTxt pointer is emitted.'
+  - url: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+    name: MLS Grid Web API 2.0 Reference
+    type: APIReference
+  - url: https://docs.mlsgrid.com/data-consumer-guides/how-to-register-and-activate-an-mls-grid-data-consumer-account.md
+    name: Register and Activate a Data Consumer Account
+    type: GettingStarted
+  - url: https://docs.mlsgrid.com/llms.txt
+    type: LLMsTxt
+    name: llms.txt (provider-hosted)
   - type: Features
     data:
       - RESO Data Dictionary compliant entity model (Property, Member, Office, OpenHouse, Media, Lookup)
@@ -297,8 +333,30 @@ common:
       - https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
       - https://docs.mlsgrid.com/sitemap.md
     updated: '2026-05-25'
+tags:
+  - Real-Estate
+  - Property Listings
+  - MLS
+  - RESO
+  - Data Replication
+  - OData
+  - Housing
+  - Data Licensing
+  - IDX
+  - Property Data
+tags_raw:
+  - Real Estate
+  - Property Listings
+  - MLS
+  - RESO
+  - Data Replication
+  - OData
+  - Housing
+  - Data Licensing
+  - IDX
+  - Property Data
 created: '2026-05-25T00:00:00.000Z'
-modified: '2026-05-25'
+modified: '2026-09-17'
 position: Consuming
 description: >-
   The MLS Grid is a normalized, RESO-compliant data distribution platform that gives brokers, MLSs, and application
@@ -312,3 +370,8 @@ maintainers:
     X: apievangelist
     url: https://apievangelist.com
 specificationVersion: '0.23'
+x-enrichment:
+  date: '2026-09-17'
+  status: enriched
+  artifacts_added: 13
+  pass: local-v3
