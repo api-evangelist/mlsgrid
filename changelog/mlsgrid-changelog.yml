@@ -1,4 +1,4 @@
-generated: '2026-07-26'
+generated: '2026-09-17'
 method: searched
 source: https://docs.mlsgrid.com/llms.txt
 docs:
@@ -20,13 +20,25 @@ scheme:
     Field renames and lookup renames are the common breaking shape. Changes normally apply only to
     new or modified records after the release, not to records already replicated — except an MLS
     system migration (MARIS, 2025-05-12), which required a full re-import.
-window: Entries published on docs.mlsgrid.com as of 2026-07-26 (36 notices, 2025-02-18 to 2026-06-05).
+window: Entries published on docs.mlsgrid.com as of 2026-09-17 (37 notices, 2025-02-18 to 2026-09-08).
 entries:
+- date: '2026-09-08'
+  title: 'Upcoming Changes to Media Delivery - Migration Away from Amazon AWS'
+  mls: all
+  type: breaking
+  highlight: >-
+    MLS Grid moved Media hosting off Amazon AWS to media.mlsgrid.com, effective 2026-09-08 at 12:00
+    Mountain Time (first announced 2026-08-04). New Media URLs are signed, SINGLE-USE and expire one
+    hour after generation; a second download inside that hour returns 429. S3 bucket-to-bucket
+    transfer is withdrawn entirely and direct Amazon CloudFront access must be repointed at the CDN
+    MLS Grid now operates. A non-expiring CDN option is available on request for consumers who cannot
+    adopt the download-and-store workflow.
+  url: https://docs.mlsgrid.com/releases/upcoming-changes-to-media-delivery-migration-away-from-amazon-aws.md
 - date: '2026-06-05'
   title: PACMLS Now Available Through MLS Grid
   mls: PACMLS
   type: new-mls-source
-  url: https://docs.mlsgrid.com/releases/pacmls-now-available-through-mls-grid.md
+  url: https://docs.mlsgrid.com/recent-releases/pacmls-now-available-through-mls-grid.md
 - date: '2026-06-01'
   title: Changes to MLS Grid Media Access
   mls: all
@@ -234,3 +246,8 @@ entries:
   type: breaking
   highlight: Field name changes, lookup name changes.
   url: https://docs.mlsgrid.com/recent-releases/realtracs-upcoming-changes-to-fields-and-lookups.md
+rechecked_on: '2026-09-17'
+rechecked_note: >-
+  Re-read https://docs.mlsgrid.com/llms.txt (HTTP 200) on 2026-09-17. One notice is new since the
+  previous pass - the media delivery migration above - and GitBook has re-filed several 2026 notices
+  from /releases/ to /recent-releases/; URLs corrected where the move was confirmed.

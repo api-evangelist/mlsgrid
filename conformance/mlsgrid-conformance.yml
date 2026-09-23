@@ -1,4 +1,4 @@
-generated: '2026-07-26'
+generated: '2026-09-17'
 method: searched
 source: https://certification.reso.org/api/v1/certification_reports/summary/T00000045
 docs:
@@ -79,3 +79,46 @@ compliance_program:
     MLS Grid runs quarterly compliance audits of the websites where licensed listings are displayed,
     on behalf of the participating MLSs.
 probed_on: '2026-07-26'
+domain_standard:
+  market: residential real estate data distribution (United States MLS)
+  standards_body: RESO (Real Estate Standards Organization)
+  declared_in_contract: true
+  signature:
+    kind: reso-data-dictionary-resource-model
+    detail: >-
+      The contract itself is the declaration, not a marketing claim. Every path in the seven OpenAPIs
+      in this repo is a RESO Data Dictionary resource name at the OData service root - /Property,
+      /Member, /Office, /OpenHouse, /Media, /Lookup - keyed by the Data Dictionary key fields
+      (ListingKey, MemberKey, OfficeKey, OpenHouseKey, MediaKey), addressed in OData canonical
+      parenthesis form (/Property('actris-1234567')), and described by an EDMX $metadata document at
+      https://api.mlsgrid.com/v2/$metadata. Field names, enumerations and the ModificationTimestamp
+      replication watermark are Data Dictionary, and the only non-standard fields carry an explicit
+      prefix (Mlg* for MLS Grid's own, a four-character MLS code plus underscore for board-local
+      fields) precisely so a Data Dictionary consumer can tell them apart.
+    evidence:
+    - openapi/mlsgrid-property-api-openapi.yml (paths /Property and /Property('{ListingKey}'))
+    - openapi/mlsgrid-member-api-openapi.yml, mlsgrid-office-api-openapi.yml, mlsgrid-openhouse-api-openapi.yml, mlsgrid-media-api-openapi.yml, mlsgrid-lookup-api-openapi.yml
+    - openapi/mlsgrid-metadata-api-openapi.yml (GET /$metadata, OData EDMX)
+    - json-schema/mlsgrid-property-schema.json, json-schema/mlsgrid-media-schema.json
+  third_party_verification:
+    registry: RESO certification directory
+    organization_uoi: T00000045
+    api: https://certification.reso.org/api/v1/certification_reports/summary/T00000045
+    reverified_on: '2026-09-17'
+    reports:
+    - {type: data_dictionary, version: '2.0', status: certified, generated_on: '2024-04-05', status_updated: '2025-03-18'}
+    - {type: web_api_server_core, version: 2.0.0, status: certified, generated_on: '2021-12-02', status_updated: '2025-03-18'}
+  buyer_meaning: >-
+    A consumer who already speaks RESO Data Dictionary 2.0 and RESO Web API integrates with no
+    bespoke connector - the resources, keys and enumerations are the ones they already map. The MLS
+    Grid-specific work is confined to three things a Data Dictionary consumer does not otherwise
+    have: the mandatory single OriginatingSystemName predicate, the Mlg* licensing fields, and the
+    prefixed key convention.
+reverified_on: '2026-09-17'
+reverified_note: >-
+  The certification summary was re-read through the RESO certification API on 2026-09-17 and both
+  reports are still 'certified'. The human-readable page https://certification.reso.org/summary/T00000045
+  answers HTTP 400 to an HTTP/2 request with no Accept header and HTTP 200 over HTTP/1.1 with a browser
+  Accept header - an edge policy, not a dead page. /.well-known probes were re-run across all six MLS
+  Grid hosts on 2026-09-17 and every rfc9116 / api-catalog / openid finding above still holds; see
+  well-known/mlsgrid-well-known.yml.

@@ -1,3 +1,19 @@
+generated: '2026-09-17'
+method: searched
+source: https://www.mlsgrid.com/interest-form
+plan_count: 2
+pricing_published: false
+pricing_note: >-
+  MLS Grid publishes NO price card. www.mlsgrid.com/pricing returns HTTP 404 (probed 2026-09-17) and
+  no page reachable from the site navigation or the documentation index names a fee, a tier or a
+  currency. Access begins with the interest form, is quoted per data consumer and per participating
+  MLS, and is governed by the single Master Data License Agreement. The two plans below are the two
+  ACCOUNT SHAPES MLS Grid documents (data consumer and broker), not priced tiers - every price field
+  reads "Contact" because that is what the provider publishes.
+probed:
+- {url: 'https://www.mlsgrid.com/pricing', status: 404}
+- {url: 'https://www.mlsgrid.com/interest-form', status: 200}
+- {url: 'https://www.mlsgrid.com/vendors', status: 200}
 aid: mlsgrid
 name: MLS Grid Subscription Plans
 description: MLS Grid does not publish a per-tier price card on its public website. Pricing is negotiated per data consumer / vendor and per participating MLS, governed by the single Master Data License Agreement. Use this file as a placeholder structure; actual fees are quoted via support@mlsgrid.com.

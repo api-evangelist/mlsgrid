@@ -1,20 +1,9 @@
 openapi: 3.2.0
 info:
-  title: MLS Grid RESO Web Lookup Metadata API
+  title: MLS Grid RESO Web Metadata API
   description: 'The MLS Grid RESO Web API is a normalized, RESO Data Dictionary–compliant OData v4 Web API for replicating
 
-    Multiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network. The
-
-    API is optimized for incremental replication using `ModificationTimestamp`, supports `$select`, `$filter`,
-
-    and `$expand` for related resources (Media, Rooms, UnitTypes), and applies a single license agreement across
-
-    all participating MLSs.
-
-
-    Authentication uses long-lived OAuth 2.0 bearer tokens issued through the MLS Grid web application.
-
-    '
+    Multiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network.'
   version: 2.0.0
   contact:
     name: MLS Grid Support

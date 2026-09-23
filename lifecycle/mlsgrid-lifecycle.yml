@@ -1,4 +1,4 @@
-generated: '2026-07-26'
+generated: '2026-09-17'
 method: searched
 source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
 versioning:
@@ -33,8 +33,9 @@ status_page:
   public: false
   url: null
   probed:
-  - {url: 'https://status.mlsgrid.com/', status: 0, note: does not resolve}
-  - {url: 'https://www.mlsgrid.com/status', status: 404}
+  - {url: 'https://status.mlsgrid.com/', status: 0, note: does not resolve, checked: '2026-09-17'}
+  - {url: 'https://www.mlsgrid.com/status', status: 404, checked: '2026-09-17'}
+  - {url: 'https://mlsgrid.statuspage.io/', status: 302, note: 'unclaimed subdomain - redirects to the statuspage.io marketing site, not an MLS Grid status page', checked: '2026-09-17'}
   member_only_equivalent: >-
     An "MLS Import Status" screen inside the MLS Grid web application (app.mlsgrid.com) shows the
     latest import status and freshness metric for each MLS. It is behind the member login, so there
@@ -49,6 +50,26 @@ freshness:
     data replication process." Consumers poll on a ModificationTimestamp watermark.
 release_notes:
   url: https://docs.mlsgrid.com/
-  artifact: changelog/mls-grid-changelog.yml
+  artifact: changelog/mlsgrid-changelog.yml
 deprecated_operations: []
 probed_on: '2026-07-26'
+infrastructure_migrations:
+- date: '2026-09-08'
+  title: Media delivery migrated off Amazon AWS
+  announced: '2026-08-04'
+  notice_days: 35
+  breaking: true
+  detail: >-
+    Media moved from Amazon S3/CloudFront to media.mlsgrid.com. New MediaURLs are signed, single-use
+    and expire one hour after generation; S3 bucket-to-bucket transfer was withdrawn outright and
+    CloudFront consumers had to repoint at the MLS Grid-operated CDN. This is the clearest example of
+    how MLS Grid actually retires a capability: a dated notice in the documentation with roughly five
+    weeks of warning and repeated email reminders, in the absence of any written deprecation policy
+    or RFC 8594 header support.
+  url: https://docs.mlsgrid.com/releases/upcoming-changes-to-media-delivery-migration-away-from-amazon-aws.md
+- date: '2026-06-01'
+  title: Media downloads must send the access token as User-Agent
+  breaking: true
+  detail: Any other User-Agent may be denied media access from 2026-06-01.
+  url: https://docs.mlsgrid.com/recent-releases/changes-to-mls-grid-media-access.md
+reprobed_on: '2026-09-17'

@@ -1,13 +1,7 @@
 {
   "provider": "mlsgrid",
   "sources": [
-    "mlsgrid-lookup-api-openapi.yml",
-    "mlsgrid-media-api-openapi.yml",
-    "mlsgrid-member-api-openapi.yml",
-    "mlsgrid-metadata-api-openapi.yml",
-    "mlsgrid-office-api-openapi.yml",
-    "mlsgrid-openhouse-api-openapi.yml",
-    "mlsgrid-property-api-openapi.yml"
+    "_original/mlsgrid-reso-web-api-openapi.yml"
   ],
   "outputs": [
     "mlsgrid-lookup-api-openapi.yml",
@@ -22,14 +16,17 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "mlsgrid-lookup-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "mlsgrid-media-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "mlsgrid-member-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "mlsgrid-metadata-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "mlsgrid-office-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "mlsgrid-openhouse-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "mlsgrid-property-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "mlsgrid-reso-web-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "mlsgrid-lookup-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mlsgrid-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mlsgrid-member-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mlsgrid-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mlsgrid-office-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mlsgrid-openhouse-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "mlsgrid-property-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

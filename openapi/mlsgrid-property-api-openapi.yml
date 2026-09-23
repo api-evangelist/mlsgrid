@@ -1,20 +1,9 @@
 openapi: 3.2.0
 info:
-  title: MLS Grid RESO Web Lookup Property API
+  title: MLS Grid RESO Web Property API
   description: 'The MLS Grid RESO Web API is a normalized, RESO Data Dictionary–compliant OData v4 Web API for replicating
 
-    Multiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network. The
-
-    API is optimized for incremental replication using `ModificationTimestamp`, supports `$select`, `$filter`,
-
-    and `$expand` for related resources (Media, Rooms, UnitTypes), and applies a single license agreement across
-
-    all participating MLSs.
-
-
-    Authentication uses long-lived OAuth 2.0 bearer tokens issued through the MLS Grid web application.
-
-    '
+    Multiple Listing Service (MLS) data across the dozens of participating boards on the MLS Grid network.'
   version: 2.0.0
   contact:
     name: MLS Grid Support
@@ -86,30 +75,6 @@ paths:
           description: Property not found.
 components:
   schemas:
-    PropertyCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.nextLink':
-          type: string
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
-    Room:
-      type: object
-      properties:
-        RoomKey:
-          type: string
-        RoomType:
-          type: string
-        RoomLevel:
-          type: string
-        RoomLength:
-          type: number
-        RoomWidth:
-          type: number
     Property:
       type: object
       description: RESO Data Dictionary Property resource. Only fields present in the originating MLS are populated.
@@ -176,17 +141,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UnitType'
-    UnitType:
-      type: object
-      properties:
-        UnitTypeKey:
-          type: string
-        UnitTypeType:
-          type: string
-        UnitTypeBedsTotal:
-          type: integer
-        UnitTypeBathsTotal:
-          type: number
     Media:
       type: object
       properties:
@@ -207,6 +161,41 @@ components:
         MediaModificationTimestamp:
           type: string
           format: date-time
+    UnitType:
+      type: object
+      properties:
+        UnitTypeKey:
+          type: string
+        UnitTypeType:
+          type: string
+        UnitTypeBedsTotal:
+          type: integer
+        UnitTypeBathsTotal:
+          type: number
+    PropertyCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.nextLink':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+    Room:
+      type: object
+      properties:
+        RoomKey:
+          type: string
+        RoomType:
+          type: string
+        RoomLevel:
+          type: string
+        RoomLength:
+          type: number
+        RoomWidth:
+          type: number
   responses:
     RateLimited:
       description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
@@ -218,12 +207,13 @@ components:
     Unauthorized:
       description: Missing or invalid bearer token.
   parameters:
-    Count:
-      name: $count
+    Select:
+      name: $select
       in: query
-      description: When `true`, includes `@odata.count` in the response.
+      description: Comma-separated list of fields to return. Reduces payload size.
       schema:
-        type: boolean
+        type: string
+      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
     Expand:
       name: $expand
       in: query
@@ -244,13 +234,6 @@ components:
       schema:
         type: string
       example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
-    Select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return. Reduces payload size.
-      schema:
-        type: string
-      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
     Top:
       name: $top
       in: query
@@ -258,6 +241,12 @@ components:
       schema:
         type: integer
         maximum: 1000
+    Count:
+      name: $count
+      in: query
+      description: When `true`, includes `@odata.count` in the response.
+      schema:
+        type: boolean
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,6 +1,12 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/mlsgrid-reso-web-api-openapi.yml
+generated: '2026-09-17'
+method: searched
+docs:
+- https://docs.mlsgrid.com/master.md
+- https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+- https://docs.mlsgrid.com/data-consumer-guides/how-to-register-and-activate-an-mls-grid-data-consumer-account.md
+source: https://docs.mlsgrid.com/master.md + openapi/mlsgrid-lookup-api-openapi.yml, openapi/mlsgrid-media-api-openapi.yml, openapi/mlsgrid-member-api-openapi.yml,
+  openapi/mlsgrid-metadata-api-openapi.yml, openapi/mlsgrid-office-api-openapi.yml, openapi/mlsgrid-openhouse-api-openapi.yml,
+  openapi/mlsgrid-property-api-openapi.yml
 summary:
   types:
   - http
@@ -12,4 +18,51 @@ schemes:
   description: Long-lived OAuth 2.0 bearer token issued via the MLS Grid web application token
     tab.
   sources:
-  - openapi/mlsgrid-reso-web-api-openapi.yml
+  - openapi/mlsgrid-lookup-api-openapi.yml
+  - openapi/mlsgrid-media-api-openapi.yml
+  - openapi/mlsgrid-member-api-openapi.yml
+  - openapi/mlsgrid-metadata-api-openapi.yml
+  - openapi/mlsgrid-office-api-openapi.yml
+  - openapi/mlsgrid-openhouse-api-openapi.yml
+  - openapi/mlsgrid-property-api-openapi.yml
+model:
+  flavor: simplified-oauth2-bearer
+  header: 'Authorization: Bearer <access_token>'
+  token_lifetime: long-lived
+  token_endpoint: null
+  authorization_endpoint: null
+  refresh_flow: false
+  scopes: false
+  scopes_note: >-
+    No scope surface exists, so no scopes/ artifact is written. Entitlement is not expressed in the
+    token - it arrives in the payload, per record, as MlgCanUse (IDX | VOW | BO | PT) and MlgCanView.
+  discovery:
+    openid_configuration: false
+    oauth_authorization_server: false
+    note: >-
+      Probed 2026-09-17 across www / api / docs / app.mlsgrid.com. 404 on www and docs, 401 on
+      api.mlsgrid.com (which authenticates every path including /.well-known/*), and the app host
+      answers 200 with its SPA shell. See well-known/mlsgrid-well-known.yml.
+  issuance:
+    self_serve: false
+    steps:
+    - Submit the interest form at https://www.mlsgrid.com/interest-form
+    - Sign the MLS Grid Master Data License Agreement in the licensing portal
+    - Create a data subscription and add a licensee
+    - Wait for the originating MLS to approve the licensee
+    - Read the long-lived token from the token tab of the approved subscription in app.mlsgrid.com
+    source: https://docs.mlsgrid.com/data-consumer-guides/how-to-register-and-activate-an-mls-grid-data-consumer-account.md
+  rotation: >-
+    Contact support@mlsgrid.com to have a token re-generated, which invalidates the old one. No
+    self-service rotation endpoint is published.
+  suspension: >-
+    Exceeding a published rate limit suspends the access token and emails the vendor account primary
+    contact; it is reinstated automatically once usage falls back within limits.
+  gotcha: >-
+    Compression is evaluated BEFORE authentication. A request without Accept-Encoding gzip returns
+    HTTP 400 COMPRESSION REQUIRED, not 401 - which reads as an auth failure to a client that only
+    checks for 401.
+  media_credential_reuse: >-
+    Media downloads must send a User-Agent header whose value is the OAuth 2 access token (enforced
+    from 2026-06-01), so the credential is carried in two different headers depending on the surface.
+reverified_on: '2026-09-17'

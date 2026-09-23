@@ -1,0 +1,82 @@
+generated: '2026-09-17'
+method: probed
+source: direct HTTP probes of the five MLS Grid hosts, 2026-09-17
+note: >-
+  Nothing was found. MLS Grid serves no /.well-known/ document on any host it operates. Recorded as a
+  measured absence: NO WellKnown or SecurityTxt pointer is wired into apis.yml, because every path
+  below either 404s, is authentication-gated, or answers 200 with the web application's HTML shell.
+  api.mlsgrid.com rejects an uncompressed request with HTTP 400 "COMPRESSION REQUIRED" before it
+  evaluates authentication, so every probe below was sent with Accept-Encoding gzip; with gzip the
+  same paths return HTTP 401 - the API gateway authenticates every path including /.well-known/*,
+  so no anonymous discovery document can exist there. app.mlsgrid.com is an Angular single-page
+  application whose catch-all route answers 200 with a 1,555-byte HTML shell for any unmatched path;
+  those 200s are NOT documents and are recorded as shell_200.
+hosts:
+- host: www.mlsgrid.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404, file: null, note: 'JSON body: {"message":"security.txt not found"}'}
+  - {path: /.well-known/openid-configuration, status: 404, file: null}
+  - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+  - {path: /.well-known/oauth-protected-resource, status: 404, file: null}
+  - {path: /.well-known/api-catalog, status: 404, file: null}
+  - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+  - {path: /.well-known/agent-card.json, status: 404, file: null}
+  - {path: /.well-known/agent.json, status: 404, file: null}
+- host: mlsgrid.com
+  documents:
+  - {path: /.well-known/security.txt, status: 301, file: null, note: apex redirects to www.mlsgrid.com}
+  - {path: /.well-known/openid-configuration, status: 301, file: null}
+  - {path: /.well-known/oauth-authorization-server, status: 301, file: null}
+  - {path: /.well-known/api-catalog, status: 301, file: null}
+  - {path: /.well-known/agent-card.json, status: 301, file: null}
+  - {path: /.well-known/agent.json, status: 301, file: null}
+- host: api.mlsgrid.com
+  note: API baseURL host and the servers[] host of all seven OpenAPIs. Every path is authenticated.
+  documents:
+  - {path: /.well-known/security.txt, status: 401, file: null}
+  - {path: /.well-known/openid-configuration, status: 401, file: null}
+  - {path: /.well-known/oauth-authorization-server, status: 401, file: null}
+  - {path: /.well-known/oauth-protected-resource, status: 401, file: null}
+  - {path: /.well-known/api-catalog, status: 401, file: null}
+  - {path: /.well-known/ai-plugin.json, status: 401, file: null}
+  - {path: /.well-known/agent-card.json, status: 401, file: null}
+  - {path: /.well-known/agent.json, status: 401, file: null}
+- host: docs.mlsgrid.com
+  note: Documentation host (GitBook). Serves a real /llms.txt, but no /.well-known/ document.
+  documents:
+  - {path: /.well-known/security.txt, status: 404, file: null}
+  - {path: /.well-known/openid-configuration, status: 404, file: null}
+  - {path: /.well-known/oauth-authorization-server, status: 404, file: null}
+  - {path: /.well-known/oauth-protected-resource, status: 404, file: null}
+  - {path: /.well-known/api-catalog, status: 404, file: null}
+  - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+  - {path: /.well-known/agent-card.json, status: 404, file: null}
+  - {path: /.well-known/agent.json, status: 404, file: null}
+- host: app.mlsgrid.com
+  note: >-
+    Member web application (Angular SPA). The 200s below are the application's 1,555-byte HTML shell,
+    byte-identical to the shell served at /, not discovery documents. Treated as misses.
+  documents:
+  - {path: /.well-known/security.txt, status: 404, file: null}
+  - {path: /.well-known/openid-configuration, status: 200, file: null, note: shell_200 - HTML SPA shell, not a document}
+  - {path: /.well-known/oauth-authorization-server, status: 200, file: null, note: shell_200 - HTML SPA shell, not a document}
+  - {path: /.well-known/oauth-protected-resource, status: 200, file: null, note: shell_200 - HTML SPA shell, not a document}
+  - {path: /.well-known/api-catalog, status: 200, file: null, note: shell_200 - HTML SPA shell, not a document}
+  - {path: /.well-known/ai-plugin.json, status: 404, file: null}
+  - {path: /.well-known/agent-card.json, status: 404, file: null}
+  - {path: /.well-known/agent.json, status: 404, file: null}
+- host: media.mlsgrid.com
+  note: >-
+    New signed-media CDN host that replaced the AWS S3/CloudFront delivery path on 2026-09-08. An
+    AWS API-Gateway style host - the root answers 403 {"message":"Missing Authentication Token"}.
+  documents:
+  - {path: /.well-known/security.txt, status: 400, file: null, note: 'gateway parse error, not a document'}
+llms_txt:
+  found: true
+  url: https://docs.mlsgrid.com/llms.txt
+  status: 200
+  file: ../llms/mlsgrid-llms.txt
+  note: >-
+    Provider-published (GitBook emits it). Saved verbatim. A companion /llms-full.txt (147 KB) is
+    also served; it is deliberately not committed per the pipeline gitignore rule.
+probed_on: '2026-09-17'

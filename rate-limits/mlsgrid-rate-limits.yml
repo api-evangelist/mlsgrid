@@ -1,3 +1,28 @@
+generated: '2026-09-17'
+method: searched
+source: https://docs.mlsgrid.com/master.md
+docs:
+- https://docs.mlsgrid.com/master.md
+- https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+limit_count: 4
+response_headers:
+  documented: false
+  ratelimit_headers: []
+  retry_after: false
+  status_on_exhaustion: 429
+  note: >-
+    MLS Grid documents the numbers but publishes NO runtime signal - no RateLimit-*, no X-RateLimit-*
+    and no Retry-After header is documented or observable anonymously (every anonymous request is
+    rejected at 401 before a limit is evaluated). An agent cannot read its remaining budget from a
+    response; it has to count its own requests. On exhaustion the access token is SUSPENDED and the
+    vendor account primary contact is emailed, and permissions are reinstated automatically once
+    usage falls back within the limits.
+media_limit:
+  scope: per-media-item
+  rule: >-
+    From 2026-09-08 each signed MediaURL is single-use for one hour - a second download of the same
+    media item, or re-requesting a fresh URL for it, inside that hour returns HTTP 429.
+  source: https://docs.mlsgrid.com/releases/upcoming-changes-to-media-delivery-migration-away-from-amazon-aws.md
 aid: mlsgrid
 name: MLS Grid Web API Rate Limits
 description: Documented rate limits for the MLS Grid Web API v2. Violations return HTTP 429 with suspension details; repeat offenders may have their token suspended. Exceptions can be requested via support@mlsgrid.com.

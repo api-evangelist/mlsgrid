@@ -1,0 +1,24 @@
+generated: '2026-09-17'
+method: generated
+source: openapi/ (seven MLS Grid RESO Web API 2.0 specs) + docs.mlsgrid.com
+note: >-
+  MLS Grid publishes no AGENTS.md and no packaged skills. These three are GENERATED from the eight
+  operations in this repo's OpenAPIs plus the published documentation, and every operationId
+  referenced below appears in those specs. They cover the three flows that actually matter on a
+  replication API: get the data, get the pictures, and stay inside the licence.
+skills:
+- name: mlsgrid-property-replication
+  file: mlsgrid-property-replication.md
+  api: mlsgrid Property API
+  operations: [listProperties, getProperty, listLookups]
+  summary: Initial full load then incremental catch-up on the ModificationTimestamp watermark, with the page-size, filter and rate-limit ceilings that stop a naive client.
+- name: mlsgrid-media-download
+  file: mlsgrid-media-download.md
+  api: mlsgrid Media API
+  operations: [listMedia, listProperties]
+  summary: Retrieve listing media under the signed, single-use, one-hour URL regime that replaced AWS S3/CloudFront delivery on 2026-09-08.
+- name: mlsgrid-license-compliance
+  file: mlsgrid-license-compliance.md
+  api: mlsgrid Property API
+  operations: [listProperties, listMembers, listOffices, listOpenHouses]
+  summary: MlgCanView deletion handling and MlgCanUse IDX/VOW/BO/PT display gating - the payload fields the quarterly compliance audit checks.

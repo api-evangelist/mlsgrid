@@ -1,0 +1,59 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for MLS Grid RESO Web Member API
+  version: 1.0.0
+extends: mlsgrid-member-api-openapi.yml
+x-generated: '2026-09-17'
+x-method: derived
+x-source: docs.mlsgrid.com (API Version 2.0) + the operations in openapi/mlsgrid-member-api-openapi.yml
+actions:
+- target: $.info
+  description: Record the operating constraints an MLS Grid client must satisfy before any request succeeds. Sourced
+    from https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
+  update:
+    x-mlsgrid-required-request-headers:
+      Accept-Encoding: gzip - REQUIRED. Evaluated BEFORE authentication; a request without it returns HTTP 400 "COMPRESSION
+        REQUIRED", not 401.
+      Authorization: Bearer <long-lived OAuth 2.0 access token issued in the MLS Grid web application>
+    x-mlsgrid-required-filter: Every request must $filter on exactly one OriginatingSystemName value. Values are
+      case sensitive and usually lowercase (actris, mred, nwmls, ...).
+    x-mlsgrid-read-only: true
+    x-mlsgrid-rate-limits:
+      per_second: 2
+      per_hour: 7200
+      per_24_hours: 40000
+      data_volume_gb_per_hour: 4
+      on_exceeded: HTTP 429 and suspension of the access token until usage falls back within limits
+    x-mlsgrid-pagination:
+      style: server-driven OData
+      next_link: '@odata.nextLink'
+      page_size_param: $top
+      default: 500
+      max: 5000
+      max_with_expand: 1000
+    x-mlsgrid-licensing-fields:
+      MlgCanView: boolean - false means the record must be deleted from the local store; it leaves the feed entirely
+        after 7 days
+      MlgCanUse: array of IDX | VOW | BO | PT - which Master Data License Agreement use cases the record qualifies
+        for
+    x-mlsgrid-identifier-convention: Key and MlsId fields are prefixed with the originating MLS code (e.g. actris-1234567)
+      so identifiers stay unique across pooled MLSs.
+- target: $.servers[0]
+  description: Confirm the production host as published by MLS Grid.
+  update:
+    x-api-evangelist-verified:
+      probed: '2026-09-17'
+      status: 401
+      note: HTTP 401 anonymously with Accept-Encoding gzip, which confirms the host is live and authenticating.
+- target: $.paths['/Member'].get
+  description: Annotate listMembers with the replication semantics MLS Grid documents for this resource.
+  update:
+    x-mlsgrid-replication:
+      watermark_field: ModificationTimestamp
+      pattern: Poll with $filter on OriginatingSystemName plus ModificationTimestamp gt <greatest timestamp already
+        received>, then follow @odata.nextLink until absent.
+      real_time: false
+    x-agentic-access:
+      action_class: read
+      consequence: none
+      reversible: na - read-only operation

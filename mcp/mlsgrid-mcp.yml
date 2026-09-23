@@ -1,0 +1,85 @@
+generated: '2026-09-17'
+method: derived
+source: openapi/ (seven MLS Grid RESO Web API 2.0 specs in this repo)
+status: candidate
+summary: >-
+  MLS Grid publishes NO Model Context Protocol server - no hosted endpoint, no first-party package,
+  no mention of MCP anywhere on www.mlsgrid.com or docs.mlsgrid.com (searched 2026-09-17). The tool
+  set below is DERIVED from the eight operations the seven OpenAPIs in this repo describe, as a
+  proposal for what an agent-facing surface over the MLS Grid Web API would look like. It is not
+  published by MLS Grid and no endpoint exists to call.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: api-key
+  auth_note: >-
+    The underlying API takes a long-lived OAuth 2.0 bearer token issued in the MLS Grid web
+    application after the Master Data License Agreement is signed and the originating MLS approves.
+    Any MCP server over this API inherits that credential; there is no self-serve key.
+  verified: searched
+third_party_implementations:
+- name: mlsgrid-mcp
+  repo: https://github.com/piotrsenkow/mlsgrid-mcp
+  registry: pkg.go.dev
+  module: github.com/piotrsenkow/mlsgrid-mcp/server
+  language: go
+  version: v0.1.0
+  published: '2026-07-03'
+  license: Apache-2.0
+  transport: stdio
+  official: false
+  note: >-
+    Community implementation by Piotr Senkow, not an MLS Grid product and not referenced by MLS Grid
+    documentation. Registers get_data_freshness, search_listings, get_listing, price_history,
+    get_comps, market_stats, get_open_houses and an optional query_sql. Recorded for completeness;
+    it does not make MLS Grid an MCP publisher.
+candidate_tools:
+- name: search_properties
+  maps_to: GET /Property
+  operation_id: listProperties
+  description: >-
+    Query the RESO Property resource for one originating MLS. Requires an $filter on exactly one
+    OriginatingSystemName; supports ModificationTimestamp watermarking, $select, $top and $expand of
+    Media, Rooms and UnitTypes.
+- name: get_property
+  maps_to: GET /Property('{ListingKey}')
+  operation_id: getProperty
+  description: Fetch a single listing by its MLS-prefixed ListingKey (e.g. actris-1234567).
+- name: list_media
+  maps_to: GET /Media
+  operation_id: listMedia
+  description: >-
+    Query the standalone Media resource where the originating MLS permits it. Media URLs are signed,
+    single-use and expire one hour after issue (from 2026-09-08).
+- name: list_members
+  maps_to: GET /Member
+  operation_id: listMembers
+  description: Query the RESO Member resource (real estate agents) for one originating MLS.
+- name: list_offices
+  maps_to: GET /Office
+  operation_id: listOffices
+  description: Query the RESO Office resource (brokerages) for one originating MLS.
+- name: list_open_houses
+  maps_to: GET /OpenHouse
+  operation_id: listOpenHouses
+  description: Query the RESO OpenHouse resource for one originating MLS.
+- name: list_lookups
+  maps_to: GET /Lookup
+  operation_id: listLookups
+  description: Enumerate the lookup values an originating MLS uses for its enumerated fields.
+- name: get_metadata
+  maps_to: GET /$metadata
+  operation_id: getMetadata
+  description: Retrieve the OData v4 EDMX service metadata document describing the entity model.
+constraints_any_server_must_honor:
+- Every request must carry Accept-Encoding gzip; without it the service returns 400 COMPRESSION REQUIRED before authentication.
+- Every request must filter on exactly one OriginatingSystemName value (case sensitive, usually lowercase).
+- Read-only. There is no write surface, so no tool below is mutating and none needs an idempotency key.
+- 2 requests/second, 7,200/hour, 40,000/24h and 4 GB/hour; exceeding any of them suspends the token.
+- $top ceiling is 5,000 without $expand and 1,000 with it.
+searched:
+- {query: 'MLS Grid MCP server model context protocol', result: 'only the third-party Go module above'}
+- {url: 'https://docs.mlsgrid.com/llms.txt', status: 200, result: 'no MCP page in the documentation index'}
+- {url: 'https://docs.mlsgrid.com/master.md', status: 200, result: 'no mention of MCP, agents or tools'}

@@ -1,4 +1,4 @@
-generated: '2026-07-26'
+generated: '2026-09-17'
 method: searched
 source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
 docs:
@@ -16,7 +16,7 @@ style:
 authentication:
   style: bearer
   header: 'Authorization: Bearer <access_token>'
-  artifact: authentication/mls-grid-authentication.yml
+  artifact: authentication/mlsgrid-authentication.yml
 compression:
   required: true
   header: Accept-Encoding
@@ -29,10 +29,32 @@ compression:
     responses are gzip compressed to shrink payload size.
 idempotency:
   supported: false
+  coverage: na
+  coverage_note: >-
+    na, not none: there is no mutating surface to protect. All eight documented operations across the
+    seven OpenAPIs in this repo are GETs against replication collections, so every request is
+    naturally idempotent and an Idempotency-Key contract would have nothing to apply to. Scoring this
+    as a miss would penalise a read-only API for not solving a problem it does not have.
+  write_operations: 0
   note: >-
-    No idempotency key or write surface exists. Every documented operation is a GET against a
+    No idempotency key and no write surface exist. Every documented operation is a GET against a
     replication collection, so retries are naturally safe and no Idempotency-Key contract is
     published.
+dry_run_mode:
+  supported: na
+  note: Read-only API. There is nothing to rehearse; every call is already a no-op against provider state.
+reversibility:
+  grade: na
+  applicable: false
+  write_surfaces: []
+  note: >-
+    na - the MLS Grid Web API has no write surface, so no action taken through it can need taking
+    back. The seven specs in this repo describe eight GET operations and nothing else, and the
+    documentation states the service is a replication surface only. The one irreversible thing in the
+    MLS Grid relationship - signing the Master Data License Agreement and having a subscription
+    approved - happens in the web application at app.mlsgrid.com, not over the API, and MLS Grid
+    publishes no cancellation window for it.
+  source: https://docs.mlsgrid.com/api-documentation/api-version-2.0.md
 pagination:
   style: server-driven (OData)
   next_link_field: '@odata.nextLink'
@@ -125,19 +147,41 @@ media:
     website or in an application. Downloads must send a User-Agent header equal to the OAuth 2
     access token (enforced from 2026-06-01).
   immutability: >-
-    Media never updates and retains its original URL. Any change issues a new Media URL, so the same
-    media never needs to be downloaded twice.
+    Media never updates and retains its original identity. Any change issues a new Media URL, so the
+    same media never needs to be downloaded twice.
+  delivery_change_2026_09_08:
+    effective: '2026-09-08'
+    host: media.mlsgrid.com
+    previous: Amazon AWS (S3 and CloudFront)
+    url_properties:
+      signed: >-
+        token, expires and id are cryptographically bound to the URL. Any reformatting, re-encoding
+        or edit invalidates it.
+      single_use: >-
+        One download per media item per hour. A second download, or re-requesting a fresh URL for the
+        same media inside that hour, returns HTTP 429.
+      ttl: 1 hour from generation
+    withdrawn:
+    - S3 bucket-to-bucket transfer (no longer available)
+    - Direct Amazon CloudFront access (must be repointed at the MLS Grid-operated CDN via support@mlsgrid.com)
+    alternative: >-
+      MLS Grid will provision CDN access whose URLs are not single-use and do not expire after an
+      hour, on request, for consumers who cannot adopt the download-and-store workflow.
+    consumer_impact: >-
+      Retrieve each MediaURL from the API and download it promptly. Do not cache, share between
+      workers, or re-request an already-used URL.
+    source: https://docs.mlsgrid.com/releases/upcoming-changes-to-media-delivery-migration-away-from-amazon-aws.md
 versioning:
   scheme: uri-path
   current: v2
-  artifact: lifecycle/mls-grid-lifecycle.yml
+  artifact: lifecycle/mlsgrid-lifecycle.yml
 errors:
   envelope: 'OData error object: {"error":{"code":<int>,"message":<string>}}'
-  artifact: errors/mls-grid-problem-types.yml
+  artifact: errors/mlsgrid-problem-types.yml
 rate_limit_signaling:
   status: 429
   headers_documented: false
-  artifact: rate-limits/mls-grid-rate-limits.yml
+  artifact: rate-limits/mlsgrid-rate-limits.yml
   note: >-
     No RateLimit-* or Retry-After headers are documented. Exceeding limits suspends the access token
     and sends email to the vendor account primary contact; permissions are automatically reinstated
@@ -151,3 +195,8 @@ metadata:
     The OData $metadata document is the machine-readable contract, but it requires the
     OriginatingSystemName filter and a bearer token — it returned HTTP 401 anonymously on
     2026-07-26.
+reverified_on: '2026-09-17'
+reverified_note: >-
+  Re-read against docs.mlsgrid.com on 2026-09-17. The OData $metadata document still returns HTTP 401
+  anonymously (with Accept-Encoding gzip; without it the service returns 400 COMPRESSION REQUIRED
+  first). New since the previous pass: the media delivery migration off AWS, effective 2026-09-08.
