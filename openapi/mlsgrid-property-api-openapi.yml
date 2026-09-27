@@ -75,6 +75,50 @@ paths:
           description: Property not found.
 components:
   schemas:
+    PropertyCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.nextLink':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
+    Media:
+      type: object
+      properties:
+        MediaKey:
+          type: string
+        ResourceRecordKey:
+          type: string
+          description: Foreign key back to Property (or other resource).
+        OriginatingSystemName:
+          type: string
+        MediaURL:
+          type: string
+          description: URL for downloading a local copy. Direct hot-linking is not permitted.
+        MediaCategory:
+          type: string
+        Order:
+          type: integer
+        MediaModificationTimestamp:
+          type: string
+          format: date-time
+    Room:
+      type: object
+      properties:
+        RoomKey:
+          type: string
+        RoomType:
+          type: string
+        RoomLevel:
+          type: string
+        RoomLength:
+          type: number
+        RoomWidth:
+          type: number
     Property:
       type: object
       description: RESO Data Dictionary Property resource. Only fields present in the originating MLS are populated.
@@ -141,26 +185,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UnitType'
-    Media:
-      type: object
-      properties:
-        MediaKey:
-          type: string
-        ResourceRecordKey:
-          type: string
-          description: Foreign key back to Property (or other resource).
-        OriginatingSystemName:
-          type: string
-        MediaURL:
-          type: string
-          description: URL for downloading a local copy. Direct hot-linking is not permitted.
-        MediaCategory:
-          type: string
-        Order:
-          type: integer
-        MediaModificationTimestamp:
-          type: string
-          format: date-time
     UnitType:
       type: object
       properties:
@@ -172,41 +196,14 @@ components:
           type: integer
         UnitTypeBathsTotal:
           type: number
-    PropertyCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.nextLink':
-          type: string
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
-    Room:
-      type: object
-      properties:
-        RoomKey:
-          type: string
-        RoomType:
-          type: string
-        RoomLevel:
-          type: string
-        RoomLength:
-          type: number
-        RoomWidth:
-          type: number
-  responses:
-    RateLimited:
-      description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
-      headers:
-        Retry-After:
-          schema:
-            type: integer
-          description: Seconds until the client may retry.
-    Unauthorized:
-      description: Missing or invalid bearer token.
   parameters:
+    Top:
+      name: $top
+      in: query
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        maximum: 1000
     Select:
       name: $select
       in: query
@@ -234,19 +231,22 @@ components:
       schema:
         type: string
       example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
-    Top:
-      name: $top
-      in: query
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        maximum: 1000
     Count:
       name: $count
       in: query
       description: When `true`, includes `@odata.count` in the response.
       schema:
         type: boolean
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+    RateLimited:
+      description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds until the client may retry.
   securitySchemes:
     bearerAuth:
       type: http
