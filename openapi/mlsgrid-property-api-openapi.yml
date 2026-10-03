@@ -74,18 +74,17 @@ paths:
         '404':
           description: Property not found.
 components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token.
+    RateLimited:
+      description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds until the client may retry.
   schemas:
-    PropertyCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.nextLink':
-          type: string
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Property'
     Media:
       type: object
       properties:
@@ -185,6 +184,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UnitType'
+    PropertyCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.nextLink':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Property'
     UnitType:
       type: object
       properties:
@@ -197,20 +207,12 @@ components:
         UnitTypeBathsTotal:
           type: number
   parameters:
-    Top:
-      name: $top
+    Count:
+      name: $count
       in: query
-      description: Maximum number of records to return per page.
+      description: When `true`, includes `@odata.count` in the response.
       schema:
-        type: integer
-        maximum: 1000
-    Select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return. Reduces payload size.
-      schema:
-        type: string
-      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
+        type: boolean
     Expand:
       name: $expand
       in: query
@@ -218,6 +220,13 @@ components:
       schema:
         type: string
       example: Media,Rooms,UnitTypes
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return. Reduces payload size.
+      schema:
+        type: string
+      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
     Filter:
       name: $filter
       in: query
@@ -231,22 +240,13 @@ components:
       schema:
         type: string
       example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
-    Count:
-      name: $count
+    Top:
+      name: $top
       in: query
-      description: When `true`, includes `@odata.count` in the response.
+      description: Maximum number of records to return per page.
       schema:
-        type: boolean
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token.
-    RateLimited:
-      description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
-      headers:
-        Retry-After:
-          schema:
-            type: integer
-          description: Seconds until the client may retry.
+        type: integer
+        maximum: 1000
   securitySchemes:
     bearerAuth:
       type: http
