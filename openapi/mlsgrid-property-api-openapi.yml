@@ -74,16 +74,6 @@ paths:
         '404':
           description: Property not found.
 components:
-  responses:
-    Unauthorized:
-      description: Missing or invalid bearer token.
-    RateLimited:
-      description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
-      headers:
-        Retry-After:
-          schema:
-            type: integer
-          description: Seconds until the client may retry.
   schemas:
     Media:
       type: object
@@ -105,19 +95,6 @@ components:
         MediaModificationTimestamp:
           type: string
           format: date-time
-    Room:
-      type: object
-      properties:
-        RoomKey:
-          type: string
-        RoomType:
-          type: string
-        RoomLevel:
-          type: string
-        RoomLength:
-          type: number
-        RoomWidth:
-          type: number
     Property:
       type: object
       description: RESO Data Dictionary Property resource. Only fields present in the originating MLS are populated.
@@ -184,6 +161,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UnitType'
+    Room:
+      type: object
+      properties:
+        RoomKey:
+          type: string
+        RoomType:
+          type: string
+        RoomLevel:
+          type: string
+        RoomLength:
+          type: number
+        RoomWidth:
+          type: number
     PropertyCollection:
       type: object
       properties:
@@ -206,6 +196,16 @@ components:
           type: integer
         UnitTypeBathsTotal:
           type: number
+  responses:
+    RateLimited:
+      description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds until the client may retry.
+    Unauthorized:
+      description: Missing or invalid bearer token.
   parameters:
     Count:
       name: $count
@@ -213,20 +213,6 @@ components:
       description: When `true`, includes `@odata.count` in the response.
       schema:
         type: boolean
-    Expand:
-      name: $expand
-      in: query
-      description: Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`.
-      schema:
-        type: string
-      example: Media,Rooms,UnitTypes
-    Select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return. Reduces payload size.
-      schema:
-        type: string
-      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
     Filter:
       name: $filter
       in: query
@@ -240,6 +226,13 @@ components:
       schema:
         type: string
       example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return. Reduces payload size.
+      schema:
+        type: string
+      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
     Top:
       name: $top
       in: query
@@ -247,6 +240,13 @@ components:
       schema:
         type: integer
         maximum: 1000
+    Expand:
+      name: $expand
+      in: query
+      description: Comma-separated list of related resources to expand inline. Common values for Property are `Media`, `Rooms`, and `UnitTypes`.
+      schema:
+        type: string
+      example: Media,Rooms,UnitTypes
   securitySchemes:
     bearerAuth:
       type: http

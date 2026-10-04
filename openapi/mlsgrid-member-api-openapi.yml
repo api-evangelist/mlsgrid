@@ -48,8 +48,6 @@ paths:
           $ref: '#/components/responses/RateLimited'
 components:
   responses:
-    Unauthorized:
-      description: Missing or invalid bearer token.
     RateLimited:
       description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
       headers:
@@ -57,6 +55,8 @@ components:
           schema:
             type: integer
           description: Seconds until the client may retry.
+    Unauthorized:
+      description: Missing or invalid bearer token.
   parameters:
     Count:
       name: $count
@@ -64,13 +64,6 @@ components:
       description: When `true`, includes `@odata.count` in the response.
       schema:
         type: boolean
-    Select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return. Reduces payload size.
-      schema:
-        type: string
-      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
     Filter:
       name: $filter
       in: query
@@ -84,6 +77,13 @@ components:
       schema:
         type: string
       example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return. Reduces payload size.
+      schema:
+        type: string
+      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
     Top:
       name: $top
       in: query
@@ -92,17 +92,6 @@ components:
         type: integer
         maximum: 1000
   schemas:
-    MemberCollection:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        '@odata.nextLink':
-          type: string
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Member'
     Member:
       type: object
       properties:
@@ -123,6 +112,17 @@ components:
           format: date-time
         MlgCanView:
           type: boolean
+    MemberCollection:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.nextLink':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Member'
   securitySchemes:
     bearerAuth:
       type: http
