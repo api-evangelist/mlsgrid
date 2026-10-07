@@ -198,6 +198,8 @@ apis:
   - type: JSONLD
     url: json-ld/mlsgrid-context.jsonld
 common:
+  - type: Pricing
+    url: https://www.mlsgrid.com/interest-form
   - type: Website
     url: https://www.mlsgrid.com/
   - type: SignUp
