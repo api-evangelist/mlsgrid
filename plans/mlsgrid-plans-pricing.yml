@@ -54,3 +54,27 @@ plans:
   - name: Sign agreements once for multi-MLS reach
   - name: Export data to third-party vendors
   - name: Broker-only account access
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units:
+  - period
+  plans:
+  - name: Data Consumer Subscription
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
+  - name: Broker Subscription
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
