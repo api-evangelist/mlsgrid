@@ -1,0 +1,698 @@
+edges:
+- partner_name: RESO
+  partner: reso
+  type: contract
+  channel: network-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    role: Technology Company
+    tier: Certified Current
+    registered_name: MLS Grid
+    organization_uoi: T00000045
+    matched_domain: mlsgrid.com
+    matched_by: domain
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    summary_url: https://certification.reso.org/summary/T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Canopy MLS (Canopy Realtor® Association)
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 1.7 Certified
+    organization_uoi: M00000391
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: East Central Iowa Association of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Passed
+    - Web API Core 2.0.0 Passed
+    organization_uoi: M00000210
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Flint Hills Association of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    organization_uoi: M00000271
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Greater Scranton Board of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Passed
+    organization_uoi: M00000536
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Heartland MLS
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Data Dictionary 1.7 Certified
+    - Web API Core 2.0.0 Certified
+    organization_uoi: M00000270
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Highland Lakes Association of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Passed
+    - Web API Core 2.0.0 Passed
+    organization_uoi: M00000606
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Lawrence Board of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    organization_uoi: M00000269
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: MARIS MLS
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 1.7 Certified
+    organization_uoi: M00000360
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: MIBOR Broker Listing Cooperative®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 1.7 Certified
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 2.0 Certified
+    organization_uoi: M00000255
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Mid-Kansas MLS (Prairie Land REALTORS®)
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    organization_uoi: M00000268
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Midwest Real Estate Data (MRED)
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Data Dictionary 1.7 Certified
+    - Web API Core 2.0.0 Certified
+    organization_uoi: M00000243
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: MLSOK
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    organization_uoi: M00000519
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Multiple Listing Service of Spartanburg
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    organization_uoi: M00000568
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: NoCoast MLS
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    organization_uoi: M00000205
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Northeast Iowa Regional Board of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Passed
+    - Web API Core 2.0.0 Passed
+    organization_uoi: M00000221
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: NorthstarMLS
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 1.7 Certified
+    organization_uoi: M00000345
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Northwest Indiana REALTORS® Association
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    organization_uoi: M00000259
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Northwest Multiple Listing Service (NWMLS)
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 1.7 Certified
+    organization_uoi: M00000650
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: OneKey® MLS
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    organization_uoi: M00000489
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Pike/Wayne Association of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    organization_uoi: M00000721
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Prescott Area Association of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Passed
+    organization_uoi: M00000044
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: REALTORS® Association of Northeast Wisconsin
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Passed
+    - Web API Core 2.0.0 Passed
+    organization_uoi: M00000657
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Realtracs
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 1.7 Certified
+    organization_uoi: M00000574
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Reelfoot Regional Association of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    organization_uoi: M00000704
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: RMLS Alliance
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 1.7 Certified
+    organization_uoi: M00000852
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: South Central Kansas MLS
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    organization_uoi: M00000277
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Southern Missouri Regional MLS
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Web API Core 2.0.0 Passed
+    - Data Dictionary 2.0 Certified
+    organization_uoi: M00000748
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Southern New Mexico MLS (Las Cruces Association of REALTORS®)
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    organization_uoi: M00000457
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Spokane Association of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 1.7 Certified
+    organization_uoi: M00000653
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Stellar MLS
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 1.7 Certified
+    organization_uoi: M00000146
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Sunflower Association of REALTORS®
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    organization_uoi: M00000276
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+- partner_name: Unlock MLS (Austin Board of REALTORS®)
+  partner: null
+  partner_match: null
+  type: contract
+  channel: network-directory
+  relationship: endpoint-coverage
+  direction: provider-built
+  evidence: https://services.reso.org/orgs?showStats=true&showEndorsements=true
+  category: RESO-certified MLS feed
+  contract_reference:
+    register: RESO organizations and endorsements (Real Estate Standards Organization)
+    spec_file: null
+    standard: RESO
+    endorsements:
+    - Data Dictionary 2.0 Certified
+    - Web API Core 2.0.0 Certified
+    - Data Dictionary 1.7 Certified
+    organization_uoi: M00000589
+    organization_type: MLS
+    vendor_uoi: T00000045
+    detected_by: sweep-real-estate.py
+    detected: '2026-10-13'
+generated: '2026-10-13'
+method: searched
+checked:
+- https://services.reso.org/orgs?showStats=true&showEndorsements=true
