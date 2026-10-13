@@ -26,7 +26,7 @@
     - Web API Core 2.0.0 Certified
     summary_url: https://certification.reso.org/summary/T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-canopy-mls-canopy-realtor-association
@@ -49,7 +49,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-east-central-iowa-association-of-realtors
@@ -72,7 +72,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-flint-hills-association-of-realtors
@@ -95,7 +95,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-greater-scranton-board-of-realtors
@@ -117,7 +117,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-heartland-mls
@@ -141,7 +141,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-highland-lakes-association-of-realtors
@@ -164,7 +164,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-lawrence-board-of-realtors
@@ -187,7 +187,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-maris-mls
@@ -210,7 +210,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-mibor-broker-listing-cooperative
@@ -234,7 +234,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-mid-kansas-mls-prairie-land-realtors
@@ -256,7 +256,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-midwest-real-estate-data-mred
@@ -280,7 +280,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-mlsok
@@ -302,7 +302,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-multiple-listing-service-of-spartanburg
@@ -325,7 +325,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-nocoast-mls
@@ -348,7 +348,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-northeast-iowa-regional-board-of-realtors
@@ -371,7 +371,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-northstarmls
@@ -394,7 +394,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-northwest-indiana-realtors-association
@@ -416,11 +416,12 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-northwest-multiple-listing-service-nwmls
   label: Northwest Multiple Listing Service (NWMLS)
+  partner: nwmls
   partner_name: Northwest Multiple Listing Service (NWMLS)
   category: RESO-certified MLS feed
   type: contract
@@ -439,7 +440,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-onekey-mls
@@ -461,7 +462,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-pike-wayne-association-of-realtors
@@ -483,7 +484,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-prescott-area-association-of-realtors
@@ -505,7 +506,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-realtors-association-of-northeast-wisconsin
@@ -528,7 +529,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-realtracs
@@ -552,7 +553,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-reelfoot-regional-association-of-realtors
@@ -575,7 +576,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-rmls-alliance
@@ -599,7 +600,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-south-central-kansas-mls
@@ -622,7 +623,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-southern-missouri-regional-mls
@@ -645,7 +646,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-southern-new-mexico-mls-las-cruces-association-of-realtors
@@ -668,7 +669,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-spokane-association-of-realtors
@@ -692,11 +693,12 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-stellar-mls
   label: Stellar MLS
+  partner: stellar-mls
   partner_name: Stellar MLS
   category: RESO-certified MLS feed
   type: contract
@@ -715,7 +717,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-sunflower-association-of-realtors
@@ -737,7 +739,7 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: mlsgrid-unlock-mls-austin-board-of-realtors
@@ -761,6 +763,6 @@
     organization_type: MLS
     vendor_uoi: T00000045
     detected_by: sweep-real-estate.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
