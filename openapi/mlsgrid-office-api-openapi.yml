@@ -58,12 +58,13 @@ components:
     Unauthorized:
       description: Missing or invalid bearer token.
   parameters:
-    Count:
-      name: $count
+    Top:
+      name: $top
       in: query
-      description: When `true`, includes `@odata.count` in the response.
+      description: Maximum number of records to return per page.
       schema:
-        type: boolean
+        type: integer
+        maximum: 1000
     Filter:
       name: $filter
       in: query
@@ -77,6 +78,12 @@ components:
       schema:
         type: string
       example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
+    Count:
+      name: $count
+      in: query
+      description: When `true`, includes `@odata.count` in the response.
+      schema:
+        type: boolean
     Select:
       name: $select
       in: query
@@ -84,13 +91,6 @@ components:
       schema:
         type: string
       example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
-    Top:
-      name: $top
-      in: query
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        maximum: 1000
   schemas:
     Office:
       type: object

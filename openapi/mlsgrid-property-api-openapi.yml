@@ -75,6 +75,17 @@ paths:
           description: Property not found.
 components:
   schemas:
+    UnitType:
+      type: object
+      properties:
+        UnitTypeKey:
+          type: string
+        UnitTypeType:
+          type: string
+        UnitTypeBedsTotal:
+          type: integer
+        UnitTypeBathsTotal:
+          type: number
     Media:
       type: object
       properties:
@@ -185,17 +196,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Property'
-    UnitType:
-      type: object
-      properties:
-        UnitTypeKey:
-          type: string
-        UnitTypeType:
-          type: string
-        UnitTypeBedsTotal:
-          type: integer
-        UnitTypeBathsTotal:
-          type: number
   responses:
     RateLimited:
       description: Rate limit exceeded. The MLS Grid Web API enforces 2 RPS, 7,200 requests/hour, 40,000 requests/24h, and 4 GB/hour download caps. Repeated violations may suspend the token.
@@ -207,32 +207,6 @@ components:
     Unauthorized:
       description: Missing or invalid bearer token.
   parameters:
-    Count:
-      name: $count
-      in: query
-      description: When `true`, includes `@odata.count` in the response.
-      schema:
-        type: boolean
-    Filter:
-      name: $filter
-      in: query
-      description: 'OData `$filter` expression. Required pattern uses `OriginatingSystemName eq ''<system>''` combined with
-
-        `ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are
-
-        restricted to a limited set of searchable fields documented per resource.
-
-        '
-      schema:
-        type: string
-      example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
-    Select:
-      name: $select
-      in: query
-      description: Comma-separated list of fields to return. Reduces payload size.
-      schema:
-        type: string
-      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
     Top:
       name: $top
       in: query
@@ -247,6 +221,32 @@ components:
       schema:
         type: string
       example: Media,Rooms,UnitTypes
+    Filter:
+      name: $filter
+      in: query
+      description: 'OData `$filter` expression. Required pattern uses `OriginatingSystemName eq ''<system>''` combined with
+
+        `ModificationTimestamp gt <UTC datetime>` for incremental replication. Replication queries are
+
+        restricted to a limited set of searchable fields documented per resource.
+
+        '
+      schema:
+        type: string
+      example: OriginatingSystemName eq 'actris' and ModificationTimestamp gt 2026-01-01T00:00:00Z
+    Count:
+      name: $count
+      in: query
+      description: When `true`, includes `@odata.count` in the response.
+      schema:
+        type: boolean
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of fields to return. Reduces payload size.
+      schema:
+        type: string
+      example: ListingKey,StandardStatus,ListPrice,ModificationTimestamp
   securitySchemes:
     bearerAuth:
       type: http
